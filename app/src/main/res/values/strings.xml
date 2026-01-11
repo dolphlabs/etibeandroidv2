@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">EtibeAndroid</string>
+    <string name="app_name">Etibe</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_illustration">Onboarding illustration</string>
+
+    <!-- Authentication -->
+    <string name="log_in">Log in</string>
+    <string name="register">Register</string>
+    <string name="continue_with_google">Continue with Google</string>
+
+    <!-- Content Descriptions -->
+    <string name="arrow_forward">Arrow forward</string>
+    <string name="arrow_back">Arrow back</string>
 </resources>

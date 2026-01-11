@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    tools:context=".OnboardingPageFragment">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:letterSpacing="-0.02"
+        android:fontFamily="@font/bold"
+        android:lineSpacingExtra="4dp"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Your Circle Deserves\nMore Than Guesswork" />
+
+    <!-- Description Text -->
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:lineSpacingExtra="4dp"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Traditional contributions get messy, missed turns, confusion, zero transparency. You need a system that actually keeps everyone aligned." />
+
+    <!-- Onboarding Image -->
+    <ImageView
+        android:id="@+id/ivOnboarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:layout_constraintDimensionRatio="H,16:10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
+        app:layout_constraintVertical_bias="0.3"
+        tools:src="@drawable/img_onboarding_1" />
+
+    <!-- Next Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/next"
+        android:drawableEnd="@drawable/arrowright"
+        android:paddingEnd="132dp"
+
+        android:paddingStart="102dp"
+
+        android:fontFamily="@font/bold"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:background="@drawable/bg_next_button"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <!-- Auth Buttons Group (Only visible on last page) -->
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupAuthButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="btnLogin,btnRegister"
+        tools:visibility="invisible" />
+
+    <!-- Login Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_auth_button"
+        android:fontFamily="@font/bold"
+        android:elevation="0dp"
+        android:text="@string/log_in"
+        android:layout_marginTop="32dp"
+        android:textAllCaps="false"
+        android:textColor="@color/progress_bar"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/btnRegister"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivOnboarding" />
+
+
+    <!-- Register Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/register"
+        android:textAllCaps="false"
+        android:textColor="@color/progress_bar"
+        android:elevation="0dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/bold"
+        android:background="@drawable/bg_auth_button"
+        app:layout_constraintBottom_toBottomOf="@id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnLogin"/>
+
+
+    <!-- Google Sign In Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGoogleSignIn"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="@color/button_google"
+        android:text="@string/continue_with_google"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:textSize="16sp"
+        app:cornerRadius="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

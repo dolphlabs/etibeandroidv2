@@ -7,4 +7,31 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="primary_green">#00C817</color>
+    <color name="progress_bar">#00640C</color>
+
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F8F9FA</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Border Colors -->
+    <color name="border_primary">#E5E7EB</color>
+    <color name="border_secondary">#D1D5DB</color>
+
+    <!-- Progress & Indicator Colors -->
+    <color name="progress_primary">#006B3D</color>
+    <color name="progress_background">#E5F5ED</color>
+    <color name="indicator_selected">#1A1A1A</color>
+    <color name="indicator_unselected">#E5E7EB</color>
+
+    <color name="highlight_yellow">#D3FFD9</color>
+    <color name="highlight_yellow_light">#FFFDE7</color>
+    <color name="highlight_red">#FFD3D3</color>
+    <color name="highlight_red_light">#FFEBEE</color>
+    <!-- Button Colors -->
+    <color name="button_google">#00D862</color>
 </resources>
