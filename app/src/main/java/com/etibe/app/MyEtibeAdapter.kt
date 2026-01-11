@@ -37,7 +37,7 @@ class MyEtibeAdapter(
             binding.apply {
                 tvName.text = etibe.name
                 tvAmount.text = "${etibe.amount}/${etibe.frequency}"
-                chipStatus.text = etibe.status
+                tvStatus.text = etibe.status
 
                 // Set status styling
                 val (bgColor, textColor) = when (etibe.status.lowercase()) {
@@ -47,8 +47,15 @@ class MyEtibeAdapter(
                     else -> Pair(R.color.status_inactive_bg, R.color.text_secondary)
                 }
 
-                chipStatus.setChipBackgroundColorResource(bgColor)
-                chipStatus.setTextColor(
+                val drawable = ContextCompat.getDrawable(
+                    binding.root.context,
+                    R.drawable.bg_auth_button
+                )?.mutate()
+
+                drawable?.setTint(ContextCompat.getColor(binding.root.context, bgColor))
+                tvStatus.background = drawable
+
+                tvStatus.setTextColor(
                     ContextCompat.getColor(binding.root.context, textColor)
                 )
 

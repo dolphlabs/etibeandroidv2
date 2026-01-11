@@ -23,21 +23,28 @@
             android:fontFamily="@font/sf_pro_display_bold"
             android:textColor="@color/text_primary"
             android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@id/chipStatus"
+            app:layout_constraintEnd_toStartOf="@id/tvStatus"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Family Circle" />
 
         <!-- Status Chip -->
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chipStatus"
-            style="@style/Widget.Etibe.Chip.Status"
+        <TextView
+            android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
+            android:background="@drawable/bg_auth_button"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:paddingStart="12dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Active" />
+            tools:text="Active"
+            tools:textColor="@color/status_active_text" />
 
         <!-- Amount -->
         <TextView

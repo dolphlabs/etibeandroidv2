@@ -110,7 +110,7 @@ class OnboardingPageFragment : Fragment() {
             }
 
             btnLogin.setOnClickListener {
-                findNavController().navigate(R.id.action_onboardingPageFragment_to_login)
+                findNavController().navigate(R.id.action_onboarding_to_login2)
             }
 
             btnRegister.setOnClickListener {

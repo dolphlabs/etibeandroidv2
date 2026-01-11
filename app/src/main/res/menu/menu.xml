@@ -17,9 +17,9 @@
         android:title="My Etibe" />
 
     <item
-        android:id="@+id/payout"
-        android:icon="@drawable/payout"
-        android:title="Payout" />
+        android:id="@+id/settings"
+        android:icon="@drawable/setting"
+        android:title="Settings" />
 
 
 

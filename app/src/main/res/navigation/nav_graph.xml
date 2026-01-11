@@ -18,7 +18,11 @@
         android:id="@+id/onboarding"
         android:name="com.etibe.app.Onboarding"
         android:label="fragment_onboarding"
-        tools:layout="@layout/fragment_onboarding" />
+        tools:layout="@layout/fragment_onboarding" >
+        <action
+            android:id="@+id/action_onboarding_to_login2"
+            app:destination="@id/login" />
+    </fragment>
     <fragment
         android:id="@+id/onboardingPageFragment"
         android:name="com.etibe.app.OnboardingPageFragment"
