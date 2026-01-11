@@ -18,14 +18,14 @@ class OnboardingAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
                 title = "Your Circle Deserves\nMore Than Guesswork",
                 description = "Traditional contributions get messy, missed turns, confusion, zero transparency. You need a system that actually keeps everyone aligned.",
                 imageRes = R.drawable.img_onboarding_1,
-                highlightWords = arrayOf("missed turns,", "confusion,", "zero transparency."),
+                highlightWords = arrayOf("missed turns,","confusion,","zero transparency."),
                 showBackButton = false
             )
             1 -> OnboardingPageFragment.newInstance(
                 title = "Etibe Reinvented With\nCrypto Precision",
                 description = "Track contributions, secure payments, automate order, and keep the entire circle accountable — all powered by blockchain-level trust.",
                 imageRes = R.drawable.img_onboarding_2,
-                highlightWords = arrayOf("secure payments,", "automate order,", " and keep the entire circle accountable"),
+                highlightWords = arrayOf("secure payments,","automate order,"," and keep the entire circle accountable"),
                 highlightColor = R.color.highlight_red,
                 showBackButton = true
             )

@@ -31,7 +31,6 @@ class OnboardingPageFragment : Fragment() {
     private val showBackButton: Boolean by lazy { arguments?.getBoolean(ARG_SHOW_BACK) ?: false }
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +40,7 @@ class OnboardingPageFragment : Fragment() {
         return binding.root
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
@@ -104,12 +104,13 @@ class OnboardingPageFragment : Fragment() {
         binding.apply {
             btnNext.setOnClickListener {
                 // Navigate to next page
-                val viewPager = parentFragment?.view?.findViewById<androidx.viewpager2.widget.ViewPager2>(R.id.viewPager)
+                val viewPager =
+                    parentFragment?.view?.findViewById<androidx.viewpager2.widget.ViewPager2>(R.id.viewPager)
                 viewPager?.currentItem = (viewPager.currentItem + 1)
             }
 
             btnLogin.setOnClickListener {
-                // Navigate to login screen
+                findNavController().navigate(R.id.action_onboardingPageFragment_to_login)
             }
 
             btnRegister.setOnClickListener {
