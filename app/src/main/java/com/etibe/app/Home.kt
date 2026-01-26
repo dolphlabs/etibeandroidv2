@@ -1,12 +1,19 @@
 package com.etibe.app
 
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log.e
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.etibe.app.databinding.FragmentHomeBinding
+import com.etibe.app.models.RetrofitClient
+import kotlinx.coroutines.launch
 
 
 class Home : Fragment() {
@@ -31,6 +38,30 @@ class Home : Fragment() {
         setupViews()
         setupClickListeners()
         loadData()
+        loadUserProfile()   // ← new call
+
+    }
+
+    private fun loadUserProfile() = lifecycleScope.launch {
+        try {
+            val response = RetrofitClient.instance(requireContext()).getCurrentUser()
+
+            if (response.isSuccessful && response.body()?.success == true) {
+                response.body()?.data?.user?.let { user ->
+                    updateUIWithUser(user)
+                }
+
+            } else {
+                // 401 → probably not logged in → go back to login
+                if (response.code() == 401) {
+                    goToLogin()
+                } else {
+                    Toast.makeText(context, "Failed to load profile", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } catch (e: Exception) {
+            Toast.makeText(context, "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupViews() {
@@ -304,6 +335,16 @@ class Home : Fragment() {
             "NEAR" -> updateBalance(312.40, 1800.00)
         }
 
+    }
+    private fun showLoading(show: Boolean) {
+        binding.progressBar.apply {
+            indeterminateDrawable.setColorFilter(
+                ContextCompat.getColor(requireContext(), R.color.primary_green),
+                PorterDuff.Mode.SRC_IN
+            )
+            val loadingOverlay = binding.loadingOverlay
+            loadingOverlay.visibility = if (show) View.VISIBLE else View.GONE
+        }
     }
 
 

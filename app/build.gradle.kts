@@ -101,4 +101,6 @@ dependencies {
 
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
+    implementation("com.github.franmontiel:PersistentCookieJar:v1.0.1")
+
 }
