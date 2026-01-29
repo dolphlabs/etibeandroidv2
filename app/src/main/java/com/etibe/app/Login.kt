@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.etibe.app.databinding.FragmentLoginBinding
 import com.etibe.app.models.RetrofitClient
 import com.etibe.app.utils.LoginRequest
+import com.etibe.app.utils.LoginResponse
 import com.etibe.app.utils.User
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
@@ -139,19 +140,20 @@ class Login : Fragment() {
         // Toast.ma
     }
 
-    private fun saveUserSession(user: User) {
-            val prefs = requireActivity().getSharedPreferences("user_session", Context.MODE_PRIVATE)
-            prefs.edit().apply {
-                putString("user_id", user.id)
-                putString("email", user.email)
-                putString("username", user.username)
-                putString("full_name", user.fullName)
-                putBoolean("is_verified", user.isVerified)
-                putBoolean("is_logged_in", true)           // ← important flag!
-                apply()
-            }
+    private fun saveUserSession(response: LoginResponse) {
+        val prefs = requireActivity().getSharedPreferences("auth", Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            putString("access_token", response.data?.accessToken)
+            putString("refresh_token", response.data?.refreshToken)
+            putString("user_id", response.data?.user?.id)
+            putString("email", response.data?.user?.email)
+            putString("username", response.data?.user?.username)
+            putString("full_name", response.data?.user?.fullName)
+            putBoolean("is_verified", response.data?.user?.isVerified ?: false)
+            putBoolean("is_logged_in", true)
+            apply()
         }
-
+    }
 
 
     private fun showLoading(show: Boolean) {

@@ -17,4 +17,6 @@ interface Api {
 
     @GET("api/v1/auth/me")
     suspend fun getCurrentUser(): Response<UserResponse>
+
+    https://api.etibeapp.xyz/
 }

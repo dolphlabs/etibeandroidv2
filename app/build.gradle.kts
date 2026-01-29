@@ -91,7 +91,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3") // latest stable version
 
-
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
 // Dates
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
 
@@ -101,6 +101,5 @@ dependencies {
 
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
-    implementation("com.github.franmontiel:PersistentCookieJar:v1.0.1")
 
 }

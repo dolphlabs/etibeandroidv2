@@ -12,9 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
-import com.franmontiel.persistentcookiejar.PersistentCookieJar
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+
 
 
 object RetrofitClient {
@@ -53,13 +51,10 @@ object RetrofitClient {
             level = HttpLoggingInterceptor.Level.BODY // Change to BASIC for prod
         }
 
-        val cookieJar = PersistentCookieJar(
-            SetCookieCache(),
-            SharedPrefsCookiePersistor(appContext)
-        )
+
 
         return OkHttpClient.Builder()
-            .cookieJar(cookieJar)
+          //  .cookieJar(cookieJar)
             .addInterceptor(logging)
             .addInterceptor(authInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
