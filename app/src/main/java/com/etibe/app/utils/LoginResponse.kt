@@ -18,17 +18,6 @@ data class LoginData(
     val refreshToken: String
 )
 
-@Serializable
-data class User(
-    val id: String,
-    val email: String,
-    val username: String,
-    val firstName: String,
-    val lastName: String,
-    val fullName: String,
-    val isVerified: Boolean,
-    val nearAccountId: String
-)
 
 @Serializable
 data class ResponseMeta(

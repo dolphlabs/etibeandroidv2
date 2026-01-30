@@ -1,13 +1,18 @@
 package com.etibe.app.utils
 
+import kotlinx.serialization.Serializable
+@Serializable
+
 data class UserResponse(
     val success: Boolean,
     val data: UserData?
 )
+@Serializable
 
 data class UserData(
     val user: User
 )
+@Serializable
 
 data class User(
     val id: String,
@@ -20,6 +25,7 @@ data class User(
     val nearAccountId: String?,
     val walletBalance: WalletBalance?
 )
+@Serializable
 
 data class WalletBalance(
     val NEAR: String?,

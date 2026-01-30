@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tokenItem"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:paddingHorizontal="20dp"
+    android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground">
+    android:paddingHorizontal="20dp"
+    android:background="?attr/selectableItemBackground">
 
+    <!-- Token icon (logo) -->
+    <ImageView
+        android:id="@+id/ivTokenIcon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_usdc_logo" />
+
+    <!-- Token name -->
     <TextView
         android:id="@+id/tvToken"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
         android:text="USDC"
         android:textSize="16sp"
-        android:textColor="#000000"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/sf_pro_text_regular" />
 
+    <!-- Checkmark when selected -->
     <ImageView
         android:id="@+id/ivCheck"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentEnd="true"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_check_circle"
-        android:visibility="gone"/>
-</RelativeLayout>
+        android:visibility="gone"
+        android:contentDescription="Selected"
+        app:tint="@color/primary_green" />
+
+</LinearLayout>
