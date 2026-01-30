@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="24dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="48dp"
         android:layout_marginTop="32dp"
         tools:context=".Home">
 
         <ImageView
             android:id="@+id/tvAppName"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="40dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
@@ -36,12 +38,12 @@
             android:padding="8dp"
             android:src="@drawable/ic_notification"
             app:layout_constraintBottom_toBottomOf="@id/tvAppName"
-            app:layout_constraintEnd_toStartOf="@id/ivProfile"
+            app:layout_constraintEnd_toStartOf="@id/ivTokenLogo"
             app:layout_constraintTop_toTopOf="@id/tvAppName" />
 
         <!-- Profile Icon -->
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivProfile"
+            android:id="@+id/ivTokenLogo"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="24dp"
@@ -49,7 +51,8 @@
             android:contentDescription="@string/profile"
             android:padding="4dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/etibe_logo"
+            android:visibility="visible"
+            android:src="@drawable/ic_near_logo"
             app:layout_constraintBottom_toBottomOf="@id/tvAppName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvAppName" />
@@ -102,7 +105,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cvBalance"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -206,6 +209,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="#B3FFFFFF"
+                    android:visibility="invisible"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvBalance" />
@@ -438,14 +442,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvRecentActivity" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
 
         <!-- View All Etibe -->
         <TextView
@@ -482,5 +479,20 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
 
+    <FrameLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+</FrameLayout>
 

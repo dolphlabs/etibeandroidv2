@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="16dp"
+    android:clipToPadding="false"
     android:background="@drawable/bg_bottom_sheet">
 
     <!-- Header -->

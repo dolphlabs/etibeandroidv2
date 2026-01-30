@@ -31,9 +31,18 @@ class Home : Fragment() {
 
     private var isBalanceVisible = false
 
-    private var selectedToken: String = "Near"          // default shown token
+    private var selectedToken: String = "Near"
 
     private var balancesMap: Map<String, Double> = emptyMap()
+
+    private var userNearAccountId: String? = null
+
+    private val tokenLogos = mapOf(
+        "NEAR" to R.drawable.ic_near_logo,
+        "USDC" to R.drawable.ic_usdc_logo,
+        "USDT" to R.drawable.ic_usdt_logo
+        // Add more tokens if needed
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +56,7 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        updateBalanceDisplay()
         setupRecyclerViews()
         setupClickListeners()
         loadUserProfileAndBalance()  // main data load
@@ -118,6 +128,7 @@ class Home : Fragment() {
     private fun updateUIWithUser(user: com.etibe.app.utils.User) {
         val wallet = user.walletBalance ?: return
 
+        userNearAccountId = user.nearAccountId
         // Parse real balances from API (they are Strings)
         val near = wallet.NEAR?.toDoubleOrNull() ?: 0.0
         val usdt = wallet.USDT?.toDoubleOrNull() ?: 0.0
@@ -140,17 +151,16 @@ class Home : Fragment() {
         val displayText: String
         val approxText: String
 
-        when (selectedToken) {
+        when (selectedToken.uppercase()) {
             "NEAR" -> {
                 displayText = if (isBalanceVisible) String.format("%.5f NEAR", amount) else "****"
                 approxText = if (isBalanceVisible) {
-                    // Rough conversion – replace with real rate API later
                     val nearUsdRate = 4.80
                     "~ $${String.format("%.2f", amount * nearUsdRate)}"
                 } else "****"
             }
 
-            else -> { // USDC & USDT
+            else -> {
                 displayText = if (isBalanceVisible) String.format("$%.2f", amount) else "****"
                 approxText = if (isBalanceVisible) "~ $${String.format("%.2f", amount)}" else "****"
             }
@@ -160,6 +170,10 @@ class Home : Fragment() {
             tvBalance.text = displayText
             tvApprox.text = approxText
             tvCurrency.text = selectedToken
+
+            // ★★★ Update token logo ★★★
+            val logoRes = tokenLogos[selectedToken.uppercase()] ?: R.drawable.ic_near_logo
+            ivTokenLogo.setImageResource(logoRes)
         }
     }
 
@@ -177,11 +191,14 @@ class Home : Fragment() {
     }
 
     private fun showLoading(show: Boolean) {
+        binding.loadingOverlay?.visibility = if (show) View.VISIBLE else View.GONE
 
-        binding.progressBar?.indeterminateDrawable?.setColorFilter(
-            ContextCompat.getColor(requireContext(), R.color.primary_green),
-            PorterDuff.Mode.SRC_IN
-        )
+        if (show) {
+            binding.progressBar?.indeterminateDrawable?.setColorFilter(
+                ContextCompat.getColor(requireContext(), R.color.primary_green),
+                PorterDuff.Mode.SRC_IN
+            )
+        }
     }
 
     private fun goToLogin() {
@@ -220,22 +237,14 @@ class Home : Fragment() {
             tvViewAllEtibe.setOnClickListener { navigateToAllEtibe() }
 
             ivNotification.setOnClickListener { navigateToNotifications() }
-            ivProfile.setOnClickListener { navigateToProfile() }
 
             // currencySelector / tvCurrency → implement later when needed
         }
     }
 
     private fun showTopUpDialog() {
-        TopUpBottomSheetDialog()
-            .apply {
-                setOnTopUpSuccessListener { amount ->
-                    // Refresh balance + add fake activity for now
-                    loadUserProfileAndBalance()
-                    // addNewActivity(...) // ← implement if needed
-                }
-            }
-            .show(childFragmentManager, "TopUpDialog")
+        TopUpBottomSheetDialog.newInstance(userNearAccountId)
+            .show(childFragmentManager, TopUpBottomSheetDialog.TAG)
     }
 
     // Placeholder navigation methods (uncomment/adjust when routes exist)
