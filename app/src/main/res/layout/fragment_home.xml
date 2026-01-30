@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="48dp"
         android:layout_marginTop="32dp"
-        tools:context=".Home">
+        tools:context=".fragment.Home">
 
         <ImageView
             android:id="@+id/tvAppName"

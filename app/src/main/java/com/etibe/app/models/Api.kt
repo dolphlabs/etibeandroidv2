@@ -2,6 +2,8 @@ package com.etibe.app.models
 
 import com.etibe.app.utils.LoginRequest
 import com.etibe.app.utils.LoginResponse
+import com.etibe.app.utils.RegisterRequest
+import com.etibe.app.utils.RegisterResponse
 import com.etibe.app.utils.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -17,5 +19,8 @@ interface Api {
 
     @GET("api/v1/auth/me")
     suspend fun getCurrentUser(): Response<UserResponse>
+
+    @POST("api/v1/auth/register")
+    suspend fun register(@Body request: RegisterRequest): Response<RegisterResponse>
 
 }

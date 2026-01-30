@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_input_bg"
                 android:fontFamily="@font/sf_pro_text_regular"
-                android:hint="Email/Phone Number"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/black"
                 android:textColorHint="@color/hint_color"

@@ -1,14 +1,14 @@
-package com.etibe.app
+package com.etibe.app.fragment
 
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.etibe.app.R
 import com.etibe.app.databinding.FragmentSplashScrenBinding
-
 
 class SplashScren : Fragment() {
     private var _binding: FragmentSplashScrenBinding? = null
@@ -29,5 +29,3 @@ class SplashScren : Fragment() {
 
 
 }
-
-

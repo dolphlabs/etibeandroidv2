@@ -114,7 +114,7 @@ class OnboardingPageFragment : Fragment() {
             }
 
             btnRegister.setOnClickListener {
-                // Navigate to register screen
+                findNavController().navigate(R.id.action_onboarding_to_fragment_signup)
             }
 
             btnGoogleSignIn.setOnClickListener {

@@ -1,7 +1,5 @@
-package com.etibe.app
+package com.etibe.app.fragment
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,15 +9,18 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.etibe.app.MyEtibe
+import com.etibe.app.MyEtibeAdapter
+import com.etibe.app.R
+import com.etibe.app.RecentActivity
+import com.etibe.app.RecentActivityAdapter
+import com.etibe.app.SelectTokenBottomSheet
+import com.etibe.app.TopUpBottomSheetDialog
 import com.etibe.app.databinding.FragmentHomeBinding
 import com.etibe.app.models.RetrofitClient
-import com.etibe.app.utils.UserResponse
+import com.etibe.app.utils.User
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class Home : Fragment() {
 
@@ -31,7 +32,7 @@ class Home : Fragment() {
 
     private var isBalanceVisible = false
 
-    private var selectedToken: String = "Near"
+    private var selectedToken: String = "NEAR"
 
     private var balancesMap: Map<String, Double> = emptyMap()
 
@@ -125,7 +126,7 @@ class Home : Fragment() {
         }
     }
 
-    private fun updateUIWithUser(user: com.etibe.app.utils.User) {
+    private fun updateUIWithUser(user: User) {
         val wallet = user.walletBalance ?: return
 
         userNearAccountId = user.nearAccountId
@@ -134,14 +135,12 @@ class Home : Fragment() {
         val usdt = wallet.USDT?.toDoubleOrNull() ?: 0.0
         val usdc = wallet.USDC?.toDoubleOrNull() ?: 0.0
 
-        // Store in map for easy access when switching token
         balancesMap = mapOf(
             "NEAR" to near,
             "USDT" to usdt,
             "USDC" to usdc
         )
 
-        // Show current selected token balance
         updateBalanceDisplay()
     }
 
@@ -153,16 +152,16 @@ class Home : Fragment() {
 
         when (selectedToken.uppercase()) {
             "NEAR" -> {
-                displayText = if (isBalanceVisible) String.format("%.5f NEAR", amount) else "****"
+                displayText = if (isBalanceVisible) String.format("%.5f ", amount) else "****"
                 approxText = if (isBalanceVisible) {
                     val nearUsdRate = 4.80
-                    "~ $${String.format("%.2f", amount * nearUsdRate)}"
+                    "~ ${String.format("%.2f", amount * nearUsdRate)}"
                 } else "****"
             }
 
             else -> {
                 displayText = if (isBalanceVisible) String.format("$%.2f", amount) else "****"
-                approxText = if (isBalanceVisible) "~ $${String.format("%.2f", amount)}" else "****"
+                approxText = if (isBalanceVisible) "~ ${String.format("%.2f", amount)}" else "****"
             }
         }
 
@@ -177,14 +176,7 @@ class Home : Fragment() {
         }
     }
 
-    private fun updateBalance(mainAmount: Double, approxUsd: Double) {
-        binding.apply {
-            tvBalance.text =
-                if (isBalanceVisible) "$${String.format("%.2f", mainAmount)}" else "****"
-            tvApprox.text =
-                if (isBalanceVisible) "~ $${String.format("%.2f", approxUsd)}" else "****"
-        }
-    }
+
 
     private fun loadMockData() {
 
@@ -243,8 +235,8 @@ class Home : Fragment() {
     }
 
     private fun showTopUpDialog() {
-        TopUpBottomSheetDialog.newInstance(userNearAccountId)
-            .show(childFragmentManager, TopUpBottomSheetDialog.TAG)
+        TopUpBottomSheetDialog.Companion.newInstance(userNearAccountId)
+            .show(childFragmentManager, TopUpBottomSheetDialog.Companion.TAG)
     }
 
     // Placeholder navigation methods (uncomment/adjust when routes exist)

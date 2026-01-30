@@ -36,10 +36,7 @@ class SelectTokenBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_bottom_sheet)
 
-        // Optional: add elevation shadow
-        view.elevation = 12f
         setupRecyclerView()
         setupCloseButton()
     }
