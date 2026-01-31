@@ -55,5 +55,17 @@
         <action
             android:id="@+id/action_fragment_signup_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_fragment_signup_to_createAccountOtp"
+            app:destination="@id/createAccountOtp" />
+    </fragment>
+    <fragment
+        android:id="@+id/createAccountOtp"
+        android:name="com.etibe.app.auth.CreateAccountOtp"
+        android:label="fragment_create_account_otp"
+        tools:layout="@layout/fragment_create_account_otp" >
+        <action
+            android:id="@+id/action_createAccountOtp_to_login"
+            app:destination="@id/login" />
     </fragment>
 </navigation>

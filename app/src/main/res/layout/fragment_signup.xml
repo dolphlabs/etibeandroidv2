@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:scrollbars="none"
-    tools:context=".auth.fragment_signup">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        tools:context=".auth.fragment_signup">
 
 
         <LinearLayout
@@ -21,6 +26,7 @@
                 android:id="@+id/btn_back"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_gravity="end"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Go back"
                 android:src="@drawable/ic_arrow_back"
@@ -30,26 +36,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="32dp"
+                android:fontFamily="@font/sf_pro_display_bold"
+                android:gravity="center"
+                android:lineSpacingExtra="8dp"
                 android:text="Group Savings,\nDone Right."
                 android:textColor="#03C82E"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="32sp"
-                android:lineSpacingExtra="8dp"
-                android:fontFamily="@font/sf_pro_display_bold" />
+                android:textSize="32sp" />
 
             <!-- Subtitle -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
                 android:text="Automated Contributions And Payouts You Can Trust. Powered By Smart Contracts."
                 android:textColor="@color/black"
-                android:gravity="center"
-                android:fontFamily="@font/sf_pro_text_regular"
-                android:textSize="16sp"
-                android:lineSpacingExtra="4dp" />
+                android:textSize="16sp" />
 
             <!-- Form fields -->
             <com.google.android.material.textfield.TextInputLayout
@@ -57,22 +63,22 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
                 app:hintAnimationEnabled="false"
-                app:hintEnabled="false"
-                android:layout_marginTop="48dp">
+                app:hintEnabled="false">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_display_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Display Name"
-                    android:fontFamily="@font/sf_pro_text_regular"
                     android:background="@drawable/text_input_bg"
-                    android:textSize="13sp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:hint="Display Name"
                     android:inputType="textPersonName"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hint_color" />
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -80,22 +86,22 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:hintAnimationEnabled="false"
-                app:hintEnabled="false"
-                android:layout_marginTop="16dp">
+                app:hintEnabled="false">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Your Email"
-                    android:fontFamily="@font/sf_pro_text_regular"
                     android:background="@drawable/text_input_bg"
-                    android:textSize="13sp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:hint="Your Email"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hint_color" />
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -112,13 +118,13 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:fontFamily="@font/sf_pro_text_regular"
                     android:background="@drawable/text_input_bg"
-                    android:textSize="13sp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hint_color" />
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -135,13 +141,13 @@
                     android:id="@+id/et_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirm Password"
-                    android:fontFamily="@font/sf_pro_text_regular"
                     android:background="@drawable/text_input_bg"
-                    android:textSize="13sp"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:hint="Confirm Password"
                     android:inputType="textPassword"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/hint_color" />
+                    android:textColorHint="@color/hint_color"
+                    android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Sign Up Button -->
@@ -150,12 +156,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="32dp"
+                android:background="@drawable/bg_btn"
+                android:fontFamily="@font/sf_pro_text_medium"
                 android:text="Get started"
                 android:textAllCaps="false"
-                android:fontFamily="@font/sf_pro_text_medium"
-                android:background="@drawable/bg_btn"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
 
             <!-- Already have account -->
@@ -177,13 +183,30 @@
                     android:id="@+id/tv_sign_in"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:text="Sign in"
                     android:textColor="@color/primary_green"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:clickable="true"
-                    android:focusable="true" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+</FrameLayout>

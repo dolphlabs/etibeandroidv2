@@ -160,7 +160,7 @@ class Home : Fragment() {
             }
 
             else -> {
-                displayText = if (isBalanceVisible) String.format("$%.2f", amount) else "****"
+                displayText = if (isBalanceVisible) String.format("%.2f", amount) else "****"
                 approxText = if (isBalanceVisible) "~ ${String.format("%.2f", amount)}" else "****"
             }
         }

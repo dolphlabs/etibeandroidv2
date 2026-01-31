@@ -42,6 +42,10 @@ class Login : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.register.setOnClickListener {
+            findNavController().navigate(R.id.action_login_to_fragment_signup)
+        }
+
         // Clear errors on input
         binding.emailEt.doAfterTextChanged {
             binding.emailAddress.error = null

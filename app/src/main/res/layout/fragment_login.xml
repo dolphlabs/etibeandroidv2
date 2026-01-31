@@ -26,16 +26,48 @@
             app:tint="@color/black" />
 
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="8dp"
+            android:text="Group Savings,\nDone Right."
+            android:textColor="#03C82E"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="14dp"
+            android:text="Automated Contributions And Payouts You Can Trust. Powered By Smart Contracts."
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailAddress"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
             app:hintAnimationEnabled="false"
+            android:layout_marginTop="32dp"
             app:hintEnabled="false"
-            app:layout_constraintTop_toBottomOf="@id/btnBack">
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:layout_editor_absoluteX="12dp">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -59,8 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="22dp"
-            app:endIconMode="password_toggle"
             app:hintAnimationEnabled="false"
+            app:passwordToggleEnabled="true"
             app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/emailAddress">
 
@@ -86,7 +118,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="44dp"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:fontFamily="@font/sf_pro_text_medium"
             android:text="I don't have an account ?"
             android:textColor="@color/black"
@@ -104,7 +136,8 @@
             android:layout_marginEnd="44dp"
             android:fontFamily="@font/sf_pro_text_medium"
             android:text="Forgot Password?"
-            android:visibility="invisible"
+            android:textColor="@color/primary_green"
+            android:visibility="visible"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/emailAddress"
             app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
@@ -118,7 +151,8 @@
             android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
             android:fontFamily="@font/sf_pro_text_medium"
-            android:visibility="invisible"
+            android:visibility="visible"
+            android:textColor="@color/primary_green"
             android:text="Register"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
