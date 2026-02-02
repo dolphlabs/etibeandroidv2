@@ -2,6 +2,8 @@ package com.etibe.app.models
 
 import com.etibe.app.utils.CircleCreateRequest
 import com.etibe.app.utils.CircleCreateResponse
+import com.etibe.app.utils.JoinCircleRequest
+import com.etibe.app.utils.JoinCircleResponse
 import com.etibe.app.utils.LoginRequest
 import com.etibe.app.utils.LoginResponse
 import com.etibe.app.utils.RegisterRequest
@@ -36,5 +38,8 @@ interface Api {
 
     @POST("/api/v1/circles")
     suspend fun createCircle(@Body request: CircleCreateRequest): Response<CircleCreateResponse>
+
+    @POST("/api/v1/circles/join")
+    suspend fun joinCircle(@Body request: JoinCircleRequest): Response<JoinCircleResponse>
 
 }

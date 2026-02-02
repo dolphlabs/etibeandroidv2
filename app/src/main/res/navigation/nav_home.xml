@@ -13,10 +13,19 @@
         <action
             android:id="@+id/action_home2_to_fragment_create_etibe"
             app:destination="@id/fragment_create_etibe" />
+        <action
+            android:id="@+id/action_home2_to_joinEtibe"
+            app:destination="@id/joinEtibe" />
+
     </fragment>
     <fragment
         android:id="@+id/fragment_create_etibe"
         android:name="com.etibe.app.fragment_create_etibe"
         android:label="fragment_create_etibe"
         tools:layout="@layout/fragment_create_etibe" />
+    <fragment
+        android:id="@+id/joinEtibe"
+        android:name="com.etibe.app.JoinEtibe"
+        android:label="fragment_join_etibe"
+        tools:layout="@layout/fragment_join_etibe" />
 </navigation>

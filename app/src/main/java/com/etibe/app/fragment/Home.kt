@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.etibe.app.MyEtibe
 import com.etibe.app.MyEtibeAdapter
@@ -240,10 +241,13 @@ class Home : Fragment() {
     }
 
     // Placeholder navigation methods (uncomment/adjust when routes exist)
-    private fun navigateToCreateEtibe() { /* findNavController().navigate(...) */
+    private fun navigateToCreateEtibe() {
+    findNavController().navigate(R.id.action_home2_to_fragment_create_etibe)
     }
 
-    private fun navigateToJoinEtibe() { /* ... */
+    private fun navigateToJoinEtibe() {
+        findNavController().navigate(R.id.action_home2_to_joinEtibe)
+
     }
 
     private fun navigateToExploreEtibe() { /* ... */
