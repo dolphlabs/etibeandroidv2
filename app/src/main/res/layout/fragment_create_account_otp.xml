@@ -173,6 +173,7 @@
         android:text="Verify"
         android:textAllCaps="false"
         android:textSize="16sp"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:fontFamily="@font/sf_pro_text_regular"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

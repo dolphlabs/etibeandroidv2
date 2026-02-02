@@ -64,12 +64,11 @@
         android:text="@string/next"
         android:drawableEnd="@drawable/arrowright"
         android:paddingEnd="132dp"
-
         android:paddingStart="102dp"
-
         android:fontFamily="@font/sf_pro_display_bold"
         android:textAllCaps="false"
         android:textColor="@color/black"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:background="@drawable/bg_next_button"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,9 +81,9 @@
         android:id="@+id/groupAuthButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:elevation="0dp"
         app:constraint_referenced_ids="btnLogin,btnRegister"
-        tools:visibility="invisible" />
+        tools:visibility="gone" />
 
     <!-- Login Button -->
     <androidx.appcompat.widget.AppCompatButton
@@ -95,12 +94,13 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/bg_auth_button"
         android:fontFamily="@font/sf_pro_display_bold"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:elevation="0dp"
         android:text="@string/log_in"
         android:layout_marginTop="32dp"
         android:textAllCaps="false"
         android:textColor="@color/progress_primary"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@id/btnRegister"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,9 +115,10 @@
         android:layout_marginStart="8dp"
         android:text="@string/register"
         android:textAllCaps="false"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:textColor="@color/progress_primary"
         android:elevation="0dp"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:fontFamily="@font/sf_pro_display_bold"
         android:background="@drawable/bg_auth_button"
         app:layout_constraintBottom_toBottomOf="@id/btnLogin"
