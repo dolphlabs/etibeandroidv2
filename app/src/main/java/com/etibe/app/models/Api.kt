@@ -8,6 +8,7 @@ import com.etibe.app.utils.LoginRequest
 import com.etibe.app.utils.LoginResponse
 import com.etibe.app.utils.RegisterRequest
 import com.etibe.app.utils.RegisterResponse
+import com.etibe.app.utils.ResendEmailRequest
 import com.etibe.app.utils.ResendOtpResponse
 import com.etibe.app.utils.UserResponse
 import com.etibe.app.utils.VerifyResponse
@@ -34,7 +35,7 @@ interface Api {
     suspend fun verifyEmail(@Body request: VerifyEmailRequest): Response<VerifyResponse>
 
     @POST("/api/v1/auth/resend-otp")
-    suspend fun resendOtp(): Response<ResendOtpResponse>
+    suspend fun resendOtp(@Body request: ResendEmailRequest): Response<ResendOtpResponse>
 
     @POST("/api/v1/circles")
     suspend fun createCircle(@Body request: CircleCreateRequest): Response<CircleCreateResponse>

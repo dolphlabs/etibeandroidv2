@@ -34,3 +34,6 @@ data class VerifyEmailRequest(
     val email: String,
     val otp: String
 )
+data class ResendEmailRequest(
+    val email: String,
+)

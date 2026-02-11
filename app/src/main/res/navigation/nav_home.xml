@@ -28,4 +28,14 @@
         android:name="com.etibe.app.JoinEtibe"
         android:label="fragment_join_etibe"
         tools:layout="@layout/fragment_join_etibe" />
+    <fragment
+        android:id="@+id/myEtibeFragment"
+        android:name="com.etibe.app.MyEtibeFragment"
+        android:label="fragment_my_etibe"
+        tools:layout="@layout/fragment_my_etibe" />
+    <fragment
+        android:id="@+id/groupDetailsFragment"
+        android:name="com.etibe.app.GroupDetailsFragment"
+        android:label="fragment_group_details"
+        tools:layout="@layout/fragment_group_details" />
 </navigation>

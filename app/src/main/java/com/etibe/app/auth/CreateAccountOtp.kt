@@ -18,6 +18,7 @@ import com.etibe.app.R
 import com.etibe.app.databinding.FragmentCreateAccountOtpBinding
 import com.etibe.app.models.RetrofitClient
 import com.etibe.app.utils.ErrorResponse
+import com.etibe.app.utils.ResendEmailRequest
 import com.etibe.app.utils.VerifyEmailRequest
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
@@ -156,7 +157,9 @@ class CreateAccountOtp : Fragment() {
 
         lifecycleScope.launch {
             try {
-                val response = RetrofitClient.instance(requireContext()).resendOtp()
+                val request = ResendEmailRequest(email = email)
+
+                val response = RetrofitClient.instance(requireContext()).resendOtp(request)
 
                 if (response.isSuccessful && response.body()?.success == true) {
                     Toast.makeText(context, "New OTP sent to your email", Toast.LENGTH_LONG).show()
