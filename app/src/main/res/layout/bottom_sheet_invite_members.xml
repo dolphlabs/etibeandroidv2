@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+        android:padding="24dp">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Invite Members"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivClose" />
+
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Close"
+            android:src="@drawable/ic_close_now"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/lines"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/background_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivClose" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/invite"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/lines"
+            android:background="@drawable/bg_auth_button"
+            android:padding="22dp"
+            android:layout_marginTop="22dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvInvitingTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Inviting to"
+                android:textColor="#008236"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <TextView
+                android:id="@+id/tvCircleName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="Family Circle"
+                android:textColor="#0D542B"
+                android:fontFamily="@font/sf_pro_text_medium"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvInvitingTo" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Circle Name -->
+
+
+        <!-- Share Link Section -->
+        <TextView
+            android:id="@+id/tvShareLinkLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Share Invite Link"
+            android:textColor="#595959"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invite" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilInviteLink"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@+id/tvShareLinkLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvShareLinkLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvInviteLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:enabled="false"
+                android:focusable="true"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:background="@drawable/input_text_input_bg"
+                android:selectable="true"
+                android:textColorHint="#101828"
+                android:hint="https://etibe.app/join/family-circle-XXXX"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/ivCopy"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Close"
+            android:src="@drawable/ic_copy_code"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/tilInviteLink"
+            app:layout_constraintEnd_toEndOf="@+id/ivClose"
+            app:layout_constraintStart_toEndOf="@+id/tilInviteLink"
+            app:layout_constraintTop_toTopOf="@id/tilInviteLink" />
+
+
+
+
+        <!-- Share Code Section -->
+        <TextView
+            android:id="@+id/tvShareCodeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Or Share Invite Code"
+            android:textColor="#595959"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilInviteLink" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilInviteCode"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:hintEnabled="false"
+            app:hintAnimationEnabled="false"
+            app:layout_constraintStart_toStartOf="@+id/tvShareCodeLabel"
+            app:layout_constraintTop_toBottomOf="@id/tvShareCodeLabel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvInviteCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_text_input_bg"
+                android:cursorVisible="false"
+                android:enabled="false"
+                android:focusable="true"
+                android:fontFamily="@font/sf_pro_text_regular"
+                android:selectable="true"
+                android:textColorHint="#101828"
+                android:text="FAMILY2025"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_invite_Copy"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Close"
+            android:src="@drawable/ic_copy_invite_code"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toBottomOf="@id/tilInviteCode"
+            app:layout_constraintEnd_toEndOf="@+id/ivClose"
+            app:layout_constraintStart_toEndOf="@+id/tilInviteCode"
+            app:layout_constraintTop_toTopOf="@id/tilInviteCode" />
+
+        <!-- Share Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShare"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text="Share via..."
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:background="@drawable/bg_btn"
+            android:textSize="16sp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:layout_gravity="center"
+            app:iconGravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilInviteCode" />
+
+        <!-- Info Note -->
+        <TextView
+            android:id="@+id/tvInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="New members can join using either the invite link or code.\nThey’ll need to contribute the same amount (the set amount) to participate."
+            android:textColor="#635800"
+            android:background="@drawable/bg_invite_button"
+            android:textSize="11sp"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:padding="12dp"
+            android:lineSpacingExtra="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnShare" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

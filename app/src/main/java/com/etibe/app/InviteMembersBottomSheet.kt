@@ -2,28 +2,30 @@ package com.etibe.app
 
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
+import androidx.core.view.isVisible
 import com.etibe.app.databinding.BottomSheetInviteMembersBinding
-import com.etibe.app.models.RetrofitClient
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.launch
 
 class InviteMembersBottomSheet(
     private val circleId: String,
-    private val circleName: String
+    private val circleName: String,
+    private val inviteLink: String = "https://etibe.app/join/family-circle-XXXX",
+    private val inviteCode: String = "FAMILY2025"
 ) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetInviteMembersBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = BottomSheetInviteMembersBinding.inflate(inflater, container, false)
@@ -33,39 +35,49 @@ class InviteMembersBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Set circle name
         binding.tvCircleName.text = circleName
 
-        // Load invite code/link from API or pass as argument
-        loadInviteCode()
+        // Set invite link & code (can be passed or fetched)
+        binding.tvInviteLink.text = inviteLink
+        binding.tvInviteCode.text = inviteCode
 
-        binding.ivCopyLink.setOnClickListener {
-            copyToClipboard(binding.tvInviteLink.text.toString())
+        // Copy link
+        binding.tilInviteLink.setEndIconOnClickListener {
+            copyToClipboard(inviteLink, "Invite link copied!")
         }
 
-        binding.ivCopyCode.setOnClickListener {
-            copyToClipboard(binding.tvInviteCode.text.toString())
+        // Copy code
+        binding.tilInviteCode.setEndIconOnClickListener {
+            copyToClipboard(inviteCode, "Invite code copied!")
         }
 
+        // Close button
+        binding.ivClose.setOnClickListener {
+            dismiss()
+        }
+
+        // Share button
         binding.btnShare.setOnClickListener {
             shareInvite()
         }
     }
 
-    private fun loadInviteCode() = lifecycleScope.launch {
-        // If invite code is not passed, fetch from circle details
-        // For simplicity, assume it's already available or hardcode
-        binding.tvInviteLink.text = "https://etibe.app/join/XXXXXX"
-        binding.tvInviteCode.text = "XXXXXX"
-    }
-
-    private fun copyToClipboard(text: String) {
-        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        clipboard.setPrimaryClip(ClipData.newPlainText("Invite", text))
-        Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
+    private fun copyToClipboard(text: String, toastMessage: String) {
+        val clipboard =
+            requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Invite", text)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
     }
 
     private fun shareInvite() {
-        val shareText = "Join my Etibé group: ${binding.tvCircleName.text}\nLink: ${binding.tvInviteLink.text}\nCode: ${binding.tvInviteCode.text}"
+        val shareText = """
+            Join my Etibé group: $circleName
+            Link: $inviteLink
+            Code: $inviteCode
+        """.trimIndent()
+
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, shareText)

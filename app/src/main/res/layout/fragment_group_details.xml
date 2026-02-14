@@ -1,158 +1,663 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
     tools:context=".GroupDetailsFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
+        <!-- Header Section -->
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="Back"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvGroupName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:gravity="center"
+            android:text="Family Circle"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ivBack"
+            app:layout_constraintEnd_toStartOf="@id/ivNotification"
+            app:layout_constraintStart_toEndOf="@id/ivBack"
+            app:layout_constraintTop_toTopOf="@id/ivBack" />
 
-            <!-- Header -->
-            <ImageView
-                android:id="@+id/ivBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back"
+        <ImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="Notifications"
+            app:layout_constraintEnd_toStartOf="@id/ivProfile"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_profile_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Members Section -->
+        <ImageView
+            android:id="@+id/ivMembersIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_profile_placeholder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivBack"
+            app:tint="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/tvMembersCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="10 members"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:textColor="#4A5565"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivMembersIcon"
+            app:layout_constraintStart_toEndOf="@id/ivMembersIcon"
+            app:layout_constraintTop_toTopOf="@id/ivMembersIcon" />
+
+        <!-- Status Badge -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_auth_button"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:text="Active"
+            android:textColor="@color/primary_green"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivMembersIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivMembersIcon" />
+
+        <!-- Member Avatars -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutMemberAvatars"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toStartOf="@id/tvViewAll"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMembersCount">
+
+            <!-- You'll need to add member avatars dynamically or create a RecyclerView -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMember1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_my_etibe"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvGroupName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Family Circle"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/ivBack"
-                app:layout_constraintTop_toTopOf="@id/ivBack" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMember2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="-12dp"
+                android:src="@drawable/ic_my_etibe"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp"
+                app:layout_constraintStart_toEndOf="@id/ivMember1"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvMembersCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="10 members"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@id/tvGroupName"
-                app:layout_constraintTop_toBottomOf="@id/tvGroupName" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMember3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="-12dp"
+                android:src="@drawable/ic_my_etibe"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp"
+                app:layout_constraintStart_toEndOf="@id/ivMember2"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Active"
-                android:textColor="@color/primary_green"
-                android:background="@drawable/bg_auth_button"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvGroupName" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMember4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="-12dp"
+                android:src="@drawable/ic_my_etibe"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp"
+                app:layout_constraintStart_toEndOf="@id/ivMember3"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Stats Card -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardStats"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@color/background_primary"
-                android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvMembersCount">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMemberPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="-12dp"
+                android:src="@drawable/ic_add_member"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp"
+                app:layout_constraintStart_toEndOf="@id/ivMember4"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvNextPayoutLabel"
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvViewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View All"
+            android:textColor="@color/primary_green"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/layoutMemberAvatars"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layoutMemberAvatars" />
+
+        <!-- Stats Card (Green Background) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardStats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="#00A63E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutMemberAvatars">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:weightSum="3">
+
+                <!-- Next Payout -->
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Next Payout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvNextPayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="$50\nDec 20, 2025"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvNextPayoutLabel" />
-
-                <!-- Add more stats similarly -->
-
-                <Button
-                    android:id="@+id/btnViewAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View All"
-                    android:textColor="@color/primary_green"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Next Recipient Card -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardNextRecipient"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardStats">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_group_button"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvNextRecipientTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Next Recipient"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:alpha="0.8"
+                        android:text="Next Payout"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
-                    <!-- Add avatar, name, amount, date, progress bar -->
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:id="@+id/tvNextPayoutAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="$50"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"/>
 
-            <!-- Your Contribution Status -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardContributionStatus"
-                android:layout_width="0dp"
+
+                    <TextView
+                        android:id="@+id/tvNextPayoutDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/sf_pro_text_medium"
+                        android:text="Dec 20, 2025"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <!-- You Received -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_group_button"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:text="You Received"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvYouReceivedAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="$50"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"/>
+
+
+                    <TextView
+                        android:id="@+id/tvYouReceivedCycle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/sf_pro_text_medium"
+                        android:alpha="0.8"
+                        android:text="This Cycle"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <!-- Your Turn -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_group_button"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.8"
+                        android:text="Your Turn"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvYourTurnNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:text="#3"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/tvYourTurnOf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:alpha="0.8"
+                        android:fontFamily="@font/sf_pro_text_medium"
+                        android:text="of 10"
+                        android:textColor="@color/white"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Current Payout Cycle Label -->
+        <TextView
+            android:id="@+id/tvCurrentPayoutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Current Payout Cycle"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:textColor="#4A5565"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardStats" />
+
+        <!-- Next Recipient Card -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardNextRecipient"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@android:color/white"
+            android:background="@drawable/payout_bg"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCurrentPayoutLabel">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardNextRecipient">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <!-- Your stats content -->
-            </androidx.cardview.widget.CardView>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivRecipientAvatar"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_my_etibe"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Add New Member Button -->
-            <com.google.android.material.button.MaterialButton
+                <!-- Green check badge -->
+                <ImageView
+                    android:id="@+id/ivCheckBadge"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/bg_check_badge"
+                    android:src="@drawable/ic_check_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/ivRecipientAvatar"
+                    app:layout_constraintEnd_toEndOf="@id/ivRecipientAvatar"
+                    app:tint="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tvNextRecipientLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="Next Recipient"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/ivRecipientAvatar"
+                    app:layout_constraintTop_toTopOf="@id/ivRecipientAvatar" />
+
+                <TextView
+                    android:id="@+id/tvRecipientName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senior Johnson"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/tvNextRecipientLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvNextRecipientLabel" />
+
+                <ImageView
+                    android:id="@+id/ivCalendar"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/ic_calendar"
+                    app:layout_constraintStart_toStartOf="@id/tvRecipientName"
+                    app:layout_constraintTop_toBottomOf="@id/tvRecipientName"
+                    app:tint="@color/text_secondary" />
+
+                <TextView
+                    android:id="@+id/tvRecipientDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="Dec 20, 2025"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/ivCalendar"
+                    app:layout_constraintStart_toEndOf="@id/ivCalendar"
+                    app:layout_constraintTop_toTopOf="@id/ivCalendar" />
+
+                <!-- Amount Section -->
+                <TextView
+                    android:id="@+id/tvAmountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amount"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvNextRecipientLabel" />
+
+                <TextView
+                    android:id="@+id/tvRecipientAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$50"
+                    android:textColor="@color/primary_green"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvAmountLabel" />
+
+                <!-- Progress Section -->
+                <TextView
+                    android:id="@+id/tvContributionsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Contributions collected"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivRecipientAvatar" />
+
+                <TextView
+                    android:id="@+id/tvContributionsProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8/10"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tvContributionsLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvContributionsLabel" />
+
+                <ProgressBar
+                    android:id="@+id/progressContributions"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="8dp"
+                    android:max="10"
+                    android:progress="8"
+                    android:progressDrawable="@drawable/progress_bar_green"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvContributionsLabel" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Your Contribution Status Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardContributionStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="#FCFFEF"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardNextRecipient">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvYourContributionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Contribution Status"
+                    android:textColor="#645800"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/layoutStats"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvYourContributionTitle">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Contributions"
+                            android:textColor="#645800"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvTotalContributions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="8"
+                            android:textColor="#645800"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Next Due"
+                            android:textColor="#645800"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tvNextDueDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Dec 13, 2025"
+                            android:textColor="#645800"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Status Message -->
+                <LinearLayout
+                    android:id="@+id/layoutStatusMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layoutStats">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_check_circle_filled"
+                        app:tint="@color/primary_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="All contributions up to date"
+                        android:textColor="#645800"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Bottom Action Buttons -->
+        <LinearLayout
+            android:id="@+id/layoutBottomActions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardContributionStatus">
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAddMember"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
-                android:layout_marginTop="24dp"
+                android:layout_weight="7"
+                android:background="@drawable/payout_bg"
+                android:drawableLeft="@drawable/ic_add_person"
+                android:drawablePadding="8dp"
+                android:paddingHorizontal="16dp"
                 android:text="Add New Member"
-                app:backgroundTint="@color/primary_green"
-                app:cornerRadius="28dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardContributionStatus" />
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnShare"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="3"
+                android:background="@drawable/bg_button_outline"
+                android:drawableLeft="@drawable/ic_share"
+                android:drawablePadding="0dp" />
+
+        </LinearLayout>
+
+        <!-- Next Contribution Due Text -->
+        <TextView
+            android:id="@+id/tvNextContributionDue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Next contribution due: Dec 13, 2025"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutBottomActions" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

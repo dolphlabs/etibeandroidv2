@@ -29,23 +29,3 @@ data class CircleData(
     val data: CircleDetails?
 )
 
-data class CircleDetails(
-    val id: String,
-    val name: String,
-    val description: String?,
-    val logoUrl: String?,
-    val status: String,
-    val contributionSettings: CircleCreateRequest.ContributionSettings,
-    val memberCount: Int,
-    val maxMembers: Int,
-    val currentRound: Int,
-    val totalRounds: Int,
-    val startDate: String,
-    val nextPayoutDate: String?,
-    val payoutAmount: String?,
-    val inviteCode: String?,
-    val inviteLink: String?,
-    val isPrivate: Boolean,
-    val isFull: Boolean,
-    val createdAt: String
-)

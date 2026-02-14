@@ -33,15 +33,15 @@ class fragment_create_etibe : Fragment() {
     private var selectedImageUri: Uri? = null
     private var selectedCurrency: String = "NEAR"
     private var selectedStartDate: String? = null
+    private var createdCircleId: String? = null  // ← store ID after creation
 
-    // Image picker launcher
+    // Image picker
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             result.data?.data?.let { uri ->
                 selectedImageUri = uri
                 binding.imageUploaded.setImageURI(uri)
                 binding.imageUploaded.visibility = View.VISIBLE
-                // Optional: hide placeholder text or "Upload Logo" button
                 binding.btnUpload.visibility = View.GONE
             }
         }
@@ -63,13 +63,11 @@ class fragment_create_etibe : Fragment() {
     }
 
     private fun setupViews() {
-        // Frequency dropdown
         val frequencies = arrayOf("WEEKLY", "BI_WEEKLY", "MONTHLY")
         val freqAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, frequencies)
         binding.etFrequency.setAdapter(freqAdapter)
         binding.etFrequency.setText("BI_WEEKLY", false)
 
-        // Payment order dropdown
         val orders = arrayOf("Names numbered by entry order", "Random", "Custom")
         val orderAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, orders)
         binding.etPaymentOrder.setAdapter(orderAdapter)
@@ -80,21 +78,18 @@ class fragment_create_etibe : Fragment() {
         binding.apply {
             ivBack.setOnClickListener { findNavController().popBackStack() }
 
-            // Image upload
             cvUploadLogo.setOnClickListener { openImagePicker() }
             btnUpload.setOnClickListener { openImagePicker() }
 
-            // Currency dropdown
             tilCurrency.setOnClickListener { showCurrencyBottomSheet() }
             etCurrency.setOnClickListener { showCurrencyBottomSheet() }
 
-            // Start date picker
             tilStartDate.setOnClickListener { showDatePicker() }
             etStartDate.setOnClickListener { showDatePicker() }
 
             btnCreate.setOnClickListener {
                 if (!validateInputs()) return@setOnClickListener
-                createCircle()
+                createAndActivateCircle()
             }
         }
     }
@@ -167,19 +162,17 @@ class fragment_create_etibe : Fragment() {
         return isValid
     }
 
-    private fun createCircle() = lifecycleScope.launch {
+    private fun createAndActivateCircle() = lifecycleScope.launch {
         showLoading(true)
         binding.btnCreate.isEnabled = false
         binding.btnCreate.text = "Creating..."
 
         try {
-            val membersText = binding.etMembers.text.toString().trim()
-            val memberList = membersText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
-
+            // Step 1: Create circle
             val request = CircleCreateRequest(
                 name = binding.etGroupName.text.toString().trim(),
-                description = "", // add field later if needed
-                logoUrl = "",     // upload later if you add image upload API
+                description = "",
+                logoUrl = "",
                 contributionSettings = CircleCreateRequest.ContributionSettings(
                     amount = binding.etAmount.text.toString().trim(),
                     currency = selectedCurrency,
@@ -187,22 +180,49 @@ class fragment_create_etibe : Fragment() {
                     gracePeriodDays = binding.etGracePeriod.text.toString().toIntOrNull() ?: 7,
                     penaltyPercentage = "0"
                 ),
-                maxMembers = 50,  // make configurable later
+                maxMembers = 50,
                 startDate = selectedStartDate,
                 isPrivate = binding.switchPrivate.isChecked
             )
 
-            val response = RetrofitClient.instance(requireContext()).createCircle(request)
+            val createResponse = RetrofitClient.instance(requireContext()).createCircle(request)
 
-            if (response.isSuccessful && response.body()?.success == true) {
-                Toast.makeText(context, "Etibé created successfully!", Toast.LENGTH_LONG).show()
-                findNavController().popBackStack() // or go to group details
+            if (createResponse.isSuccessful && createResponse.body()?.success == true) {
+                val createdData = createResponse.body()?.data?.data
+                createdCircleId = createdData?.id
+
+                if (createdCircleId.isNullOrBlank()) {
+                    showError("Circle created but no ID received")
+                    return@launch
+                }
+
+                Toast.makeText(context, "Etibé created! Activating...", Toast.LENGTH_SHORT).show()
+
+                // Step 2: Activate circle
+                binding.btnCreate.text = "Activating..."
+                val activateResponse = RetrofitClient.instance(requireContext()).activateCircle(createdCircleId!!)
+
+                if (activateResponse.isSuccessful && activateResponse.body()?.success == true) {
+                    val message = activateResponse.body()?.data?.message
+                        ?: "Etibé activated successfully!"
+
+                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
+                    // Navigate back or to group details
+                    findNavController().popBackStack()
+                    // Optional: go to details
+                    // val bundle = Bundle().apply { putString("circleId", createdCircleId) }
+                    // findNavController().navigate(R.id.action_createEtibe_to_groupDetails, bundle)
+                } else {
+                    val errorMsg = activateResponse.errorBody()?.string() ?: "Failed to activate circle"
+                    showError("Activation failed: $errorMsg")
+                }
             } else {
-                val errorMsg = response.errorBody()?.string() ?: "Failed to create group"
-                Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
+                val errorMsg = createResponse.errorBody()?.string() ?: "Failed to create Etibé"
+                showError(errorMsg)
             }
         } catch (e: Exception) {
-            Toast.makeText(context, "Network error: ${e.message}", Toast.LENGTH_LONG).show()
+            showError("Network error: ${e.message ?: "Unknown error"}")
         } finally {
             showLoading(false)
             binding.btnCreate.isEnabled = true
@@ -218,6 +238,11 @@ class fragment_create_etibe : Fragment() {
                 PorterDuff.Mode.SRC_IN
             )
         }
+    }
+
+    private fun showError(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        // Optional: show Snackbar or set error TextView
     }
 
     override fun onDestroyView() {

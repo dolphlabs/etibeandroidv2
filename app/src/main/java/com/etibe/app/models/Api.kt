@@ -1,11 +1,14 @@
 package com.etibe.app.models
 
+import com.etibe.app.utils.ActivateCircleResponse
 import com.etibe.app.utils.CircleCreateRequest
 import com.etibe.app.utils.CircleCreateResponse
+import com.etibe.app.utils.CircleDashboardResponse
 import com.etibe.app.utils.JoinCircleRequest
 import com.etibe.app.utils.JoinCircleResponse
 import com.etibe.app.utils.LoginRequest
 import com.etibe.app.utils.LoginResponse
+import com.etibe.app.utils.MyCirclesResponse
 import com.etibe.app.utils.RegisterRequest
 import com.etibe.app.utils.RegisterResponse
 import com.etibe.app.utils.ResendEmailRequest
@@ -17,6 +20,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface Api {
 
@@ -42,5 +46,14 @@ interface Api {
 
     @POST("/api/v1/circles/join")
     suspend fun joinCircle(@Body request: JoinCircleRequest): Response<JoinCircleResponse>
+
+    @GET("/api/v1/circles")
+    suspend fun getMyCircles(): Response<MyCirclesResponse>
+
+    @GET("/api/v1/circles/{id}/dashboard")
+    suspend fun getCircleDashboard(@Path("id") id: String): Response<CircleDashboardResponse>
+
+    @POST("/api/v1/circles/{circleId}/activate")
+    suspend fun activateCircle(@Path("circleId") circleId: String): Response<ActivateCircleResponse>
 
 }

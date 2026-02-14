@@ -14,7 +14,7 @@
 
         <!-- Background Colors -->
         <color name="background_primary">#FFFFFF</color>
-        <color name="background_secondary">#F8F9FA</color>
+        <color name="background_secondary">#E5E7EB</color>
 
         <!-- Text Colors -->
         <color name="text_primary">#1A1A1A</color>
@@ -78,8 +78,11 @@
         <color name="chip_choice_bg">@color/white</color>
         <color name="chip_choice_text">@color/text_primary</color>
 
+    <color name="progress_bg">#E5E7EB</color>
 
 
 
-    </resources>
+
+
+</resources>
 

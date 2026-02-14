@@ -32,7 +32,11 @@
         android:id="@+id/myEtibeFragment"
         android:name="com.etibe.app.MyEtibeFragment"
         android:label="fragment_my_etibe"
-        tools:layout="@layout/fragment_my_etibe" />
+        tools:layout="@layout/fragment_my_etibe" >
+        <action
+            android:id="@+id/action_myEtibeFragment_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/groupDetailsFragment"
         android:name="com.etibe.app.GroupDetailsFragment"

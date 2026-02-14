@@ -34,17 +34,22 @@ class MyEtibeFragment : Fragment() {
 
         setupRecyclerView()
         loadMyCircles()
-        setupBottomNavigation()
     }
 
     private fun setupRecyclerView() {
         adapter = MyEtibeAdapter { circle ->
-            val action = MyEtibeFragmentDirections.actionMyEtibeToGroupDetails(circle.id)
-            findNavController().navigate(action)
+            // Pass circle ID using Bundle
+            val bundle = Bundle().apply {
+                putString("circleId", circle.id)
+                putString("circleName", circle.name) // optional
+            }
+            findNavController().navigate(R.id.action_myEtibeFragment_to_groupDetailsFragment, bundle)
         }
+
         binding.rvMyEtibeGroups.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@MyEtibeFragment.adapter
+            setHasFixedSize(true)
         }
     }
 
@@ -56,26 +61,17 @@ class MyEtibeFragment : Fragment() {
                 val circles = response.body()?.data?.data ?: emptyList()
                 adapter.submitList(circles)
 
-                // Update stats (example - customize as needed)
+                // Update stats
                 binding.tvActiveGroups.text = circles.size.toString()
+                // You can calculate other stats (next payout, gift received) here if needed
             } else {
-                Toast.makeText(context, "Failed to load groups", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Failed to load your Etibés", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
-            Toast.makeText(context, "Network error", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun setupBottomNavigation() {
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_home -> findNavController().navigate(R.id.action_myEtibe_to_home)
-                R.id.nav_explore -> findNavController().navigate(R.id.action_myEtibe_to_explore)
-                R.id.nav_settings -> findNavController().navigate(R.id.action_myEtibe_to_settings)
-            }
-            true
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

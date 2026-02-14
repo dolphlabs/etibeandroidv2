@@ -17,7 +17,7 @@
 
         <!-- Name -->
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tvGroupName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_bold"
@@ -48,7 +48,7 @@
 
         <!-- Amount -->
         <TextView
-            android:id="@+id/tvAmount"
+            android:id="@+id/tvContribution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -56,8 +56,21 @@
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvGroupName"
             tools:text="₦10,000/week" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnViewEtibe"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:text="View Etibé"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:backgroundTint="@color/primary_green"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvContribution" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
