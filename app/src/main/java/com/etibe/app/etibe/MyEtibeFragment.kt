@@ -1,4 +1,4 @@
-package com.etibe.app
+package com.etibe.app.etibe
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.etibe.app.R
 import com.etibe.app.adapter.MyEtibeAdapter
 import com.etibe.app.databinding.FragmentMyEtibeBinding
 import com.etibe.app.models.RetrofitClient
@@ -43,7 +44,10 @@ class MyEtibeFragment : Fragment() {
                 putString("circleId", circle.id)
                 putString("circleName", circle.name) // optional
             }
-            findNavController().navigate(R.id.action_myEtibeFragment_to_groupDetailsFragment, bundle)
+            findNavController().navigate(
+                R.id.action_myEtibeFragment_to_groupDetailsFragment,
+                bundle
+            )
         }
 
         binding.rvMyEtibeGroups.apply {

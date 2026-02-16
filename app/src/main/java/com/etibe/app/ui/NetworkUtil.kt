@@ -1,9 +1,13 @@
-package com.etibe.app
+package com.etibe.app.ui
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import javax.net.ssl.SSLException
 
 object NetworkUtil {
 
@@ -55,10 +59,10 @@ object NetworkUtil {
      */
     fun getNetworkErrorMessage(exception: Throwable): String {
         return when (exception) {
-            is java.net.UnknownHostException -> "No internet connection. Please check your network and try again."
-            is java.net.SocketTimeoutException -> "Connection timeout. Please check your network and try again."
-            is java.net.ConnectException -> "Unable to connect. Please check your network and try again."
-            is javax.net.ssl.SSLException -> "Secure connection failed. Please try again."
+            is UnknownHostException -> "No internet connection. Please check your network and try again."
+            is SocketTimeoutException -> "Connection timeout. Please check your network and try again."
+            is ConnectException -> "Unable to connect. Please check your network and try again."
+            is SSLException -> "Secure connection failed. Please try again."
             else -> exception.message ?: "Network error. Please try again."
         }
     }

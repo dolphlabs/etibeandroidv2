@@ -23,6 +23,7 @@ data class MyCirclesData(
 data class CircleDashboardResponse(
     val success: Boolean,
     val data: DashboardData?,
+    val error: ApiError?,              // ← add this for failure cases
     val meta: Meta?
 )
 
@@ -43,26 +44,7 @@ data class DashboardDetails(
     @SerializedName("userContributedThisRound")
     val userContributedThisRound: Boolean?
 )
-data class Circle(
-    val id: String?,
-    val name: String?,
-    val description: String?,
-    val logoUrl: String?,
-    val status: String?,
-    val contributionSettings: ContributionSettings?,
-    val memberCount: Int?,
-    val maxMembers: Int?,
-    val currentRound: Int?,
-    val totalRounds: Int?,
-    val startDate: String?,
-    val nextPayoutDate: String?,
-    val payoutAmount: String?,
-    val inviteCode: String?,
-    val inviteLink: String?,
-    val isPrivate: Boolean?,
-    val isFull: Boolean?,
-    val createdAt: String?
-)
+
 // ─────────────────────────────────────────────
 // Shared Models
 // ─────────────────────────────────────────────

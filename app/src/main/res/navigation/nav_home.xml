@@ -16,21 +16,27 @@
         <action
             android:id="@+id/action_home2_to_joinEtibe"
             app:destination="@id/joinEtibe" />
+        <action
+            android:id="@+id/action_home2_to_myEtibeFragment"
+            app:destination="@id/myEtibeFragment" />
+        <action
+            android:id="@+id/action_home2_to_exploreEtibeFragment"
+            app:destination="@id/exploreEtibeFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/fragment_create_etibe"
-        android:name="com.etibe.app.fragment_create_etibe"
+        android:name="com.etibe.app.etibe.fragment_create_etibe"
         android:label="fragment_create_etibe"
         tools:layout="@layout/fragment_create_etibe" />
     <fragment
         android:id="@+id/joinEtibe"
-        android:name="com.etibe.app.JoinEtibe"
+        android:name="com.etibe.app.etibe.JoinEtibe"
         android:label="fragment_join_etibe"
         tools:layout="@layout/fragment_join_etibe" />
     <fragment
         android:id="@+id/myEtibeFragment"
-        android:name="com.etibe.app.MyEtibeFragment"
+        android:name="com.etibe.app.etibe.MyEtibeFragment"
         android:label="fragment_my_etibe"
         tools:layout="@layout/fragment_my_etibe" >
         <action
@@ -39,7 +45,12 @@
     </fragment>
     <fragment
         android:id="@+id/groupDetailsFragment"
-        android:name="com.etibe.app.GroupDetailsFragment"
+        android:name="com.etibe.app.etibe.GroupDetailsFragment"
         android:label="fragment_group_details"
         tools:layout="@layout/fragment_group_details" />
+    <fragment
+        android:id="@+id/exploreEtibeFragment"
+        android:name="com.etibe.app.etibe.ExploreEtibeFragment"
+        android:label="fragment_explore_etibe"
+        tools:layout="@layout/fragment_explore_etibe" />
 </navigation>

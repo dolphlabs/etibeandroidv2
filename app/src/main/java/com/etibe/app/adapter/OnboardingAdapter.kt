@@ -1,8 +1,9 @@
-package com.etibe.app
+package com.etibe.app.adapter
+
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-
-
+import com.etibe.app.fragment.OnboardingPageFragment
+import com.etibe.app.R
 
 class OnboardingAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -14,14 +15,14 @@ class OnboardingAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> OnboardingPageFragment.newInstance(
+            0 -> OnboardingPageFragment.Companion.newInstance(
                 title = "Your Circle Deserves\nMore Than Guesswork",
                 description = "Traditional contributions get messy, missed turns, confusion, zero transparency. You need a system that actually keeps everyone aligned.",
                 imageRes = R.drawable.img_onboarding_1,
                 highlightWords = arrayOf("missed turns,","confusion,","zero transparency."),
                 showBackButton = false
             )
-            1 -> OnboardingPageFragment.newInstance(
+            1 -> OnboardingPageFragment.Companion.newInstance(
                 title = "Etibe Reinvented With\nCrypto Precision",
                 description = "Track contributions, secure payments, automate order, and keep the entire circle accountable — all powered by blockchain-level trust.",
                 imageRes = R.drawable.img_onboarding_2,
@@ -29,7 +30,7 @@ class OnboardingAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
                 highlightColor = R.color.highlight_red,
                 showBackButton = true
             )
-            2 -> OnboardingPageFragment.newInstance(
+            2 -> OnboardingPageFragment.Companion.newInstance(
                 title = "Build Your Circle.\nSecure Your Savings.",
                 description = "",
                 imageRes = R.drawable.img_onboarding_3,

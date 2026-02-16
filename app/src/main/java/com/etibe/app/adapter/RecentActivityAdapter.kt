@@ -1,5 +1,4 @@
-package com.etibe.app
-
+package com.etibe.app.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +6,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.etibe.app.R
 import com.etibe.app.databinding.ItemRecentActivityBinding
-
+import com.etibe.app.utils.ActivityType
+import com.etibe.app.utils.RecentActivity
 
 class RecentActivityAdapter(
     private val onItemClick: (RecentActivity) -> Unit = {}

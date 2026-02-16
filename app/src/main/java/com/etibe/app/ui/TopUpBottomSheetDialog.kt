@@ -1,4 +1,4 @@
-package com.etibe.app
+package com.etibe.app.ui
 
 import android.content.ClipData
 import android.content.ClipboardManager

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp"
+    android:id="@+id/cardCircle">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_auth_button"
+        android:padding="20dp">
+
+        <!-- Circle Name -->
+        <TextView
+            android:id="@+id/tvCircleName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Family Circle"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sf_pro_display_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvStatus"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Status Badge -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Active"
+            android:textColor="@color/primary_green"
+            android:background="@drawable/bg_auth_button"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:textSize="12sp"
+            android:fontFamily="@font/sf_pro_text_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvCircleName" />
+
+        <!-- Contribution Amount -->
+        <TextView
+            android:id="@+id/tvContribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₦10,000/week"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/sf_pro_text_regular"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCircleName" />
+
+        <!-- Member Avatars -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutMemberAvatars"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvContribution">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMember1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_my_etibe"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMember2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_my_etibe"
+                android:layout_marginStart="-12dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"
+                app:layout_constraintStart_toEndOf="@id/ivMember1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMember3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_my_etibe"
+                android:layout_marginStart="-12dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"
+                app:layout_constraintStart_toEndOf="@id/ivMember2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivMemberCount"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_my_etibe"
+                android:layout_marginStart="-12dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"
+                app:layout_constraintStart_toEndOf="@id/ivMember3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/tvMemberCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+5"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/sf_pro_text_medium"
+                app:layout_constraintStart_toStartOf="@id/ivMemberCount"
+                app:layout_constraintEnd_toEndOf="@id/ivMemberCount"
+                app:layout_constraintTop_toTopOf="@id/ivMemberCount"
+                app:layout_constraintBottom_toBottomOf="@id/ivMemberCount" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Join Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnJoin"
+            android:layout_width="120dp"
+            android:layout_height="52dp"
+            android:text="Join Etibe"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:background="@drawable/bg_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvContribution"
+            app:layout_constraintBottom_toBottomOf="@id/layoutMemberAvatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

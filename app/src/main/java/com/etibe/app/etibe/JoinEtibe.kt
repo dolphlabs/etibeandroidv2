@@ -1,4 +1,4 @@
-package com.etibe.app
+package com.etibe.app.etibe
 
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.etibe.app.R
 import com.etibe.app.databinding.FragmentJoinEtibeBinding
 import com.etibe.app.models.RetrofitClient
 import com.etibe.app.utils.ErrorResponse

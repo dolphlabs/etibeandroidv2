@@ -1,4 +1,4 @@
-package com.etibe.app
+package com.etibe.app.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.etibe.app.adapter.OnboardingAdapter
 import com.etibe.app.databinding.FragmentOnboardingBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

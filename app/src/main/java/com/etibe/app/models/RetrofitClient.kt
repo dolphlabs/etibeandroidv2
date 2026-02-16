@@ -2,7 +2,7 @@ package com.etibe.app.models
 
 import android.content.Context
 import android.util.Log
-import com.etibe.app.NetworkUtil
+import com.etibe.app.ui.NetworkUtil
 import com.etibe.app.adapter.SafeDoubleAdapter
 import com.etibe.app.adapter.SafeIntAdapter
 import com.google.gson.GsonBuilder

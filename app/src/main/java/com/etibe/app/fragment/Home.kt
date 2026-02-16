@@ -11,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.etibe.app.MyEtibe
-import com.etibe.app.MyEtibeAdapter
+import com.etibe.app.utils.MyEtibe
+import com.etibe.app.adapter.HomeAdpter
 import com.etibe.app.R
-import com.etibe.app.RecentActivity
-import com.etibe.app.RecentActivityAdapter
-import com.etibe.app.SelectTokenBottomSheet
-import com.etibe.app.TopUpBottomSheetDialog
+import com.etibe.app.utils.RecentActivity
+import com.etibe.app.adapter.RecentActivityAdapter
+import com.etibe.app.ui.SelectTokenBottomSheet
+import com.etibe.app.ui.TopUpBottomSheetDialog
 import com.etibe.app.databinding.FragmentHomeBinding
 import com.etibe.app.models.RetrofitClient
 import com.etibe.app.utils.User
@@ -29,7 +29,7 @@ class Home : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var recentActivityAdapter: RecentActivityAdapter
-    private lateinit var myEtibeAdapter: MyEtibeAdapter
+    private lateinit var myEtibeAdapter: HomeAdpter
 
     private var isBalanceVisible = false
 
@@ -89,7 +89,7 @@ class Home : Fragment() {
             setHasFixedSize(true)
         }
 
-        myEtibeAdapter = MyEtibeAdapter { etibe ->
+        myEtibeAdapter = HomeAdpter { etibe ->
             onEtibeClicked(etibe)
         }
         binding.rvMyEtibe.apply {
@@ -253,7 +253,8 @@ class Home : Fragment() {
     private fun navigateToExploreEtibe() { /* ... */
     }
 
-    private fun navigateToMyEtibe() { /* ... */
+    private fun navigateToMyEtibe() {
+        findNavController().navigate(R.id.action_home2_to_myEtibeFragment)
     }
 
     private fun navigateToAllActivities() { /* ... */

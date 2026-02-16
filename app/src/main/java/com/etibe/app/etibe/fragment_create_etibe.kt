@@ -1,5 +1,6 @@
-package com.etibe.app
+package com.etibe.app.etibe
 
+import android.R
 import android.app.Activity
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -18,6 +19,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.etibe.app.databinding.FragmentCreateEtibeBinding
 import com.etibe.app.models.RetrofitClient
+import com.etibe.app.ui.SelectTokenBottomSheet
 import com.etibe.app.utils.CircleCreateRequest
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
@@ -64,12 +66,12 @@ class fragment_create_etibe : Fragment() {
 
     private fun setupViews() {
         val frequencies = arrayOf("WEEKLY", "BI_WEEKLY", "MONTHLY")
-        val freqAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, frequencies)
+        val freqAdapter = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, frequencies)
         binding.etFrequency.setAdapter(freqAdapter)
         binding.etFrequency.setText("BI_WEEKLY", false)
 
         val orders = arrayOf("Names numbered by entry order", "Random", "Custom")
-        val orderAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, orders)
+        val orderAdapter = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, orders)
         binding.etPaymentOrder.setAdapter(orderAdapter)
         binding.etPaymentOrder.setText("Names numbered by entry order", false)
     }
@@ -234,7 +236,7 @@ class fragment_create_etibe : Fragment() {
         binding.loadingOverlay?.visibility = if (show) View.VISIBLE else View.GONE
         if (show) {
             binding.progressBar?.indeterminateDrawable?.setColorFilter(
-                ContextCompat.getColor(requireContext(), R.color.primary_green),
+                ContextCompat.getColor(requireContext(), com.etibe.app.R.color.primary_green),
                 PorterDuff.Mode.SRC_IN
             )
         }

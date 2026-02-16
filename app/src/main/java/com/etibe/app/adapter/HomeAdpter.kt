@@ -1,6 +1,4 @@
-package com.etibe.app
-
-
+package com.etibe.app.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,12 +6,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.etibe.app.utils.MyEtibe
+import com.etibe.app.R
 import com.etibe.app.databinding.ItemMyEtibeBinding
 
-
-class MyEtibeAdapter(
+class HomeAdpter(
     private val onItemClick: (MyEtibe) -> Unit = {}
-) : ListAdapter<MyEtibe, MyEtibeAdapter.ViewHolder>(DiffCallback()) {
+) : ListAdapter<MyEtibe, HomeAdpter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemMyEtibeBinding.inflate(
@@ -35,8 +34,8 @@ class MyEtibeAdapter(
 
         fun bind(etibe: MyEtibe) {
             binding.apply {
-                tvName.text = etibe.name
-                tvAmount.text = "${etibe.amount}/${etibe.frequency}"
+                tvGroupName.text = etibe.name
+                tvContribution.text = "${etibe.amount}/${etibe.frequency}"
                 tvStatus.text = etibe.status
 
                 // Set status styling

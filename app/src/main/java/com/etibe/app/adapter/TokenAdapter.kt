@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.etibe.app.SelectTokenBottomSheet
+import com.etibe.app.ui.SelectTokenBottomSheet
 import com.etibe.app.databinding.ItemTokenBinding
 
 class TokenAdapter(

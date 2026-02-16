@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboarding"
-        android:name="com.etibe.app.Onboarding"
+        android:name="com.etibe.app.fragment.Onboarding"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingPageFragment"
-        android:name="com.etibe.app.OnboardingPageFragment"
+        android:name="com.etibe.app.fragment.OnboardingPageFragment"
         android:label="fragment_onboarding_page"
         tools:layout="@layout/fragment_onboarding_page" >
         <action

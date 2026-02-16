@@ -1,4 +1,4 @@
-package com.etibe.app
+package com.etibe.app.utils
 
 import androidx.annotation.DrawableRes
 

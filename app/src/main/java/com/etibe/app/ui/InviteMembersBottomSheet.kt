@@ -1,4 +1,4 @@
-package com.etibe.app
+package com.etibe.app.ui
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -9,15 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import com.etibe.app.databinding.BottomSheetInviteMembersBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class InviteMembersBottomSheet(
     private val circleId: String,
     private val circleName: String,
-    private val inviteLink: String = "https://etibe.app/join/family-circle-XXXX",
-    private val inviteCode: String = "FAMILY2025"
+    private val inviteLink: String,
+    private val inviteCode: String
 ) : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetInviteMembersBinding? = null
@@ -35,14 +34,13 @@ class InviteMembersBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set circle name
+        // Populate UI
         binding.tvCircleName.text = circleName
+        binding.tvInviteLink.setText(inviteLink)  // Correct!
+        binding.tvInviteCode.setText(inviteCode)  // Correct!
 
-        // Set invite link & code (can be passed or fetched)
-        binding.tvInviteLink.text = inviteLink
-        binding.tvInviteCode.text = inviteCode
 
-        // Copy link
+        // Copy link (using Material end icon click)
         binding.tilInviteLink.setEndIconOnClickListener {
             copyToClipboard(inviteLink, "Invite link copied!")
         }
@@ -52,12 +50,12 @@ class InviteMembersBottomSheet(
             copyToClipboard(inviteCode, "Invite code copied!")
         }
 
-        // Close button
+        // Close
         binding.ivClose.setOnClickListener {
             dismiss()
         }
 
-        // Share button
+        // Share
         binding.btnShare.setOnClickListener {
             shareInvite()
         }
@@ -79,7 +77,7 @@ class InviteMembersBottomSheet(
         """.trimIndent()
 
         val intent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
+            Intent.setType = "text/plain"
             putExtra(Intent.EXTRA_TEXT, shareText)
         }
         startActivity(Intent.createChooser(intent, "Share via"))

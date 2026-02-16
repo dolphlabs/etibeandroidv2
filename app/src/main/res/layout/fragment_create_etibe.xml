@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:background="#FAFFFC"
             android:padding="24dp"
-            tools:context=".fragment_create_etibe">
+            tools:context=".etibe.fragment_create_etibe">
 
             <ImageView
                 android:id="@+id/ivBack"

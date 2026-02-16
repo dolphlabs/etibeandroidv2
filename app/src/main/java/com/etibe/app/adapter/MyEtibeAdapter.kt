@@ -33,9 +33,9 @@ class MyEtibeAdapter(
         fun bind(circle: CircleDetails) {
             binding.apply {
                 tvGroupName.text = circle.name
-                tvContribution.text = "${circle.contributionSettings.amount} ${circle.contributionSettings.currency}/${circle.contributionSettings.frequency.lowercase()}"
+                tvContribution.text = "${circle.contributionSettings!!.amount} ${circle.contributionSettings.currency}/${circle.contributionSettings!!.frequency!!.lowercase()}"
                 tvStatus.text = circle.status
-                tvStatus.isVisible = circle.status.isNotBlank()
+                tvStatus.isVisible = circle.status!!.isNotBlank()
                 tvStatus.setBackgroundResource(
                     when (circle.status.uppercase()) {
                         "ACTIVE" -> R.drawable.bg_btn

@@ -4,6 +4,7 @@ import com.etibe.app.utils.ActivateCircleResponse
 import com.etibe.app.utils.CircleCreateRequest
 import com.etibe.app.utils.CircleCreateResponse
 import com.etibe.app.utils.CircleDashboardResponse
+import com.etibe.app.utils.DiscoverCirclesResponse
 import com.etibe.app.utils.JoinCircleRequest
 import com.etibe.app.utils.JoinCircleResponse
 import com.etibe.app.utils.LoginRequest
@@ -21,6 +22,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface Api {
 
@@ -55,5 +57,14 @@ interface Api {
 
     @POST("/api/v1/circles/{circleId}/activate")
     suspend fun activateCircle(@Path("circleId") circleId: String): Response<ActivateCircleResponse>
+
+
+    @GET("circles/discover")
+    suspend fun discoverCircles(
+        @Query("search") search: String? = null,
+        @Query("status") status: String? = null,
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 20
+    ): Response<DiscoverCirclesResponse>
 
 }

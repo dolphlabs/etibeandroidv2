@@ -1,4 +1,4 @@
-package com.etibe.app
+package com.etibe.app.fragment
 
 import android.os.Bundle
 import android.text.SpannableString
@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
+import com.etibe.app.R
 import com.etibe.app.databinding.FragmentOnboardingPageBinding
 
 
@@ -105,7 +107,7 @@ class OnboardingPageFragment : Fragment() {
             btnNext.setOnClickListener {
                 // Navigate to next page
                 val viewPager =
-                    parentFragment?.view?.findViewById<androidx.viewpager2.widget.ViewPager2>(R.id.viewPager)
+                    parentFragment?.view?.findViewById<ViewPager2>(R.id.viewPager)
                 viewPager?.currentItem = (viewPager.currentItem + 1)
             }
 
