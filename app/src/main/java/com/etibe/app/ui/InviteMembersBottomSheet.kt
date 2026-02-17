@@ -41,12 +41,12 @@ class InviteMembersBottomSheet(
 
 
         // Copy link (using Material end icon click)
-        binding.tilInviteLink.setEndIconOnClickListener {
+        binding.ivClose.setOnClickListener {
             copyToClipboard(inviteLink, "Invite link copied!")
         }
 
         // Copy code
-        binding.tilInviteCode.setEndIconOnClickListener {
+        binding.ivInviteCopy.setOnClickListener {
             copyToClipboard(inviteCode, "Invite code copied!")
         }
 
@@ -77,7 +77,7 @@ class InviteMembersBottomSheet(
         """.trimIndent()
 
         val intent = Intent(Intent.ACTION_SEND).apply {
-            Intent.setType = "text/plain"
+            type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, shareText)
         }
         startActivity(Intent.createChooser(intent, "Share via"))

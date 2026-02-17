@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "596915099635",
+    "project_id": "etibeapp",
+    "storage_bucket": "etibeapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596915099635:android:c80b9150fd2be6e339e486",
+        "android_client_info": {
+          "package_name": "com.etibe.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz9uP8cEY67zuAb7GFUBSVdmg-U4YFgjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

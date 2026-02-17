@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="32dp"
     tools:context=".etibe.ExploreEtibeFragment">
 
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_arrow_back"
+        android:layout_marginTop="32dp"
         android:contentDescription="Back"
-        app:tint="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="@+id/searchCard"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -153,7 +154,7 @@
                     <ImageView
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/ic_empty_state"
+                        android:src="@drawable/ic_arrow_forward"
                         android:alpha="0.5"
                         app:tint="@color/text_secondary" />
 
@@ -191,7 +192,7 @@
                     <ImageView
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/ic_error_state"
+                        android:src="@drawable/ic_add"
                         android:alpha="0.5"
                         app:tint="@color/text_secondary" />
 
@@ -220,7 +221,7 @@
                         android:layout_height="48dp"
                         android:text="Retry"
                         android:textColor="@android:color/white"
-                        android:background="@drawable/bg_button_primary"
+                        android:background="@drawable/bg_btn"
                         android:paddingHorizontal="32dp"
                         android:layout_marginTop="16dp" />
 

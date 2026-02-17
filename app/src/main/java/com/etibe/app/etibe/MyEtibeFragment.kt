@@ -27,6 +27,9 @@ class MyEtibeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMyEtibeBinding.inflate(inflater, container, false)
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         return binding.root
     }
 

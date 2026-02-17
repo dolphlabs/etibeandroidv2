@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("plugin.serialization") version "1.9.22"
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 
 
 }
@@ -67,7 +69,6 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
 
-
     // Navigation View
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
@@ -100,6 +101,12 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
+
+    implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
 
 
 }

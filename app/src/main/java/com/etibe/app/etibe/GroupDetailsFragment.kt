@@ -154,11 +154,19 @@ class GroupDetailsFragment : Fragment() {
         }
     }
     private fun showInviteMembers(circleId: String, circleName: String) {
-        InviteMembersBottomSheet(circleId, circleName).show(
-            parentFragmentManager,
-            "InviteBottomSheet"
-        )
+
+        val inviteCode = circleId.takeLast(6).uppercase()     // example code
+        val inviteLink = "https://etibe.app/join/$inviteCode"   // example
+
+
+        InviteMembersBottomSheet(
+            circleId,
+            circleName,
+            inviteLink,
+            inviteCode
+        ).show(parentFragmentManager, "InviteBottomSheet")
     }
+
 
     private fun showError(message: String) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()

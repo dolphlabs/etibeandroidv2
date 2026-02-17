@@ -178,7 +178,6 @@ class Home : Fragment() {
     }
 
 
-
     private fun loadMockData() {
 
     }
@@ -242,7 +241,7 @@ class Home : Fragment() {
 
     // Placeholder navigation methods (uncomment/adjust when routes exist)
     private fun navigateToCreateEtibe() {
-    findNavController().navigate(R.id.action_home2_to_fragment_create_etibe)
+        findNavController().navigate(R.id.action_home2_to_fragment_create_etibe)
     }
 
     private fun navigateToJoinEtibe() {
@@ -250,7 +249,8 @@ class Home : Fragment() {
 
     }
 
-    private fun navigateToExploreEtibe() { /* ... */
+    private fun navigateToExploreEtibe() {
+        findNavController().navigate(R.id.action_home2_to_exploreEtibeFragment)/* ... */
     }
 
     private fun navigateToMyEtibe() {
@@ -270,8 +270,7 @@ class Home : Fragment() {
     }
 
     private fun handleWithdraw() {
-        // TODO: Implement withdraw flow
-        Toast.makeText(context, "Withdraw feature coming soon", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.action_home2_to_withdrawFundsFragment)
     }
 
     private fun onActivityClicked(activity: RecentActivity) { /* TODO */

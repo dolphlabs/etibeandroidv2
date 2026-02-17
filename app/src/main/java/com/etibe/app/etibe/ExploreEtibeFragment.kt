@@ -11,12 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.etibe.app.R
-import com.etibe.app.adapters.CirclesAdapter
-import com.etibe.app.data.models.Circle
+import com.etibe.app.adapter.CirclesAdapter
+
 import com.etibe.app.databinding.FragmentExploreEtibeBinding
 import com.etibe.app.utils.Circle
-import com.etibe.app.viewmodels.ExploreEtibeViewModel
+import com.etibe.app.models.ExploreEtibeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ExploreEtibeFragment : Fragment() {
@@ -177,6 +178,7 @@ class ExploreEtibeFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
             circle.status == "COMPLETED" -> {
                 Toast.makeText(
                     requireContext(),
@@ -184,6 +186,7 @@ class ExploreEtibeFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
             else -> {
                 // Navigate to join circle screen or show join dialog
                 showJoinDialog(circle)

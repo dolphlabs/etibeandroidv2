@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FAFFFC"
     android:padding="16dp"
+    android:layout_marginTop="32dp"
     tools:context=".etibe.MyEtibeFragment">
 
 
@@ -14,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_back"
+            android:layout_marginTop="22dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/black" />

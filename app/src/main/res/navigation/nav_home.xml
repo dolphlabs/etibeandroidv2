@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_home2_to_exploreEtibeFragment"
             app:destination="@id/exploreEtibeFragment" />
+        <action
+            android:id="@+id/action_home2_to_withdrawFundsFragment"
+            app:destination="@id/withdrawFundsFragment" />
 
     </fragment>
     <fragment
@@ -53,4 +56,9 @@
         android:name="com.etibe.app.etibe.ExploreEtibeFragment"
         android:label="fragment_explore_etibe"
         tools:layout="@layout/fragment_explore_etibe" />
+    <fragment
+        android:id="@+id/withdrawFundsFragment"
+        android:name="com.etibe.app.withdraw.WithdrawFundsFragment"
+        android:label="fragment_withdraw_funds"
+        tools:layout="@layout/fragment_withdraw_funds" />
 </navigation>
