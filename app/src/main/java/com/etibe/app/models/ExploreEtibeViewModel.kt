@@ -32,7 +32,6 @@ class ExploreEtibeViewModel @Inject constructor(
     private var currentSearchQuery: String? = null
 
     init {
-        loadCircles()
     }
 
     fun loadCircles(forceRefresh: Boolean = false) {

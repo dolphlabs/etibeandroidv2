@@ -74,10 +74,10 @@ interface Api {
         @Query("limit") limit: Int = 20
     ): Response<DiscoverCirclesResponse>
 
-    @POST("api/v1/circles/request-withdrawal-otp")
+    @POST("api/v1/wallet/request-withdrawal-otp")
     suspend fun requestWithdrawalOtp(@Body request: WithdrawOtpRequest): Response<WithdrawOtpResponse>
 
-    @POST("api/v1/circles/withdraw")
+    @POST("api/v1/wallet/withdraw")
     suspend fun withdraw(@Body request: WithdrawRequest): Response<WithdrawResponse>
 
 }

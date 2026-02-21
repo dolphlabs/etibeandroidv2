@@ -47,6 +47,8 @@ class ExploreEtibeFragment : Fragment() {
         observeViewModel()
     }
 
+
+
     private fun setupRecyclerView() {
         adapter = CirclesAdapter(
             onCircleClick = { circle ->

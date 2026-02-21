@@ -127,15 +127,8 @@ class Login : Fragment() {
     private fun saveUserSession(response: LoginResponse) {
         val data = response.data ?: return  // early exit if no data
 
-        // Save tokens using the secure method from RetrofitClient
-        RetrofitClient.saveTokens(
-            context = requireContext(),
-            authToken = data.accessToken,
-            refreshToken = data.refreshToken
-        )
 
-        // Optional: still save some non-sensitive user info if you want
-        // (but avoid saving sensitive data here)
+
         val prefs = requireActivity().getSharedPreferences("info", Context.MODE_PRIVATE)
         prefs.edit().apply {
             putString("user_id", data.user.id)
@@ -144,6 +137,8 @@ class Login : Fragment() {
             putString("full_name", data.user.fullName)
             putBoolean("is_verified", data.user.isVerified)
             putBoolean("is_logged_in", true)
+            putString("auth_token", data.accessToken)
+            putString("refresh_token", data.refreshToken)
             apply()
         }
     }

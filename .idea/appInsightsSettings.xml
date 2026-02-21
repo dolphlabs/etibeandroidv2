@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.etibe.app" />
+                  <option name="mobileSdkAppId" value="1:596915099635:android:c80b9150fd2be6e339e486" />
+                  <option name="projectId" value="etibeapp" />
+                  <option name="projectNumber" value="596915099635" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
