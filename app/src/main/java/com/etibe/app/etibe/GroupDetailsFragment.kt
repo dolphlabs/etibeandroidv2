@@ -25,6 +25,9 @@ class GroupDetailsFragment : Fragment() {
     private var circleId: String = ""
     private var circleName: String = ""
 
+    private var inviteCode: String? = null
+    private var inviteLink: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         circleId = arguments?.getString("circleId") ?: ""
@@ -81,11 +84,16 @@ class GroupDetailsFragment : Fragment() {
                 return@launch
             }
 
+
+
+
             // Bind circle info
             binding.tvGroupName.text = details.circle?.name ?: circleName
             binding.tvMembersCount.text = "${details.circle?.memberCount ?: 0} members"
             binding.tvStatus.text = details.circle?.status ?: "Unknown"
             binding.tvStatus.isVisible = !details.circle?.status.isNullOrBlank()
+            inviteCode = details.circle?.inviteCode?.uppercase() ?: details.circle?.id?.takeLast(6)?.uppercase()
+            inviteLink = details.circle?.inviteLink ?: "https://etibe.app/join/${inviteCode}"
 
             // Next Payout section (from stats or circle)
             binding.tvNextPayoutAmount.text = details.circle?.payoutAmount ?: "$0"
@@ -154,16 +162,15 @@ class GroupDetailsFragment : Fragment() {
         }
     }
     private fun showInviteMembers(circleId: String, circleName: String) {
-
-        val inviteCode = circleId.takeLast(6).uppercase()     // example code
-        val inviteLink = "https://etibe.app/join/$inviteCode"   // example
-
+        // Use the real invite code & link if available
+        val code = inviteCode ?: circleId.takeLast(6).uppercase()
+        val link = inviteLink ?: "https://etibe.app/join/$code"
 
         InviteMembersBottomSheet(
             circleId,
             circleName,
-            inviteLink,
-            inviteCode
+            link,
+            code
         ).show(parentFragmentManager, "InviteBottomSheet")
     }
 
