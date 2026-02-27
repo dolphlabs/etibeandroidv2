@@ -1,5 +1,6 @@
 package com.etibe.app.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -110,12 +111,13 @@ class OnboardingPageFragment : Fragment() {
                     parentFragment?.view?.findViewById<ViewPager2>(R.id.viewPager)
                 viewPager?.currentItem = (viewPager.currentItem + 1)
             }
-
             btnLogin.setOnClickListener {
+                markOnboardingCompleted()
                 findNavController().navigate(R.id.action_onboarding_to_login2)
             }
 
             btnRegister.setOnClickListener {
+                markOnboardingCompleted()
                 findNavController().navigate(R.id.action_onboarding_to_fragment_signup)
             }
 
@@ -124,6 +126,15 @@ class OnboardingPageFragment : Fragment() {
                 handleGoogleSignIn()
             }
         }
+    }
+
+    private fun markOnboardingCompleted() {
+        val prefs = requireActivity()
+            .getSharedPreferences("etibe_prefs", Context.MODE_PRIVATE)
+
+        prefs.edit()
+            .putBoolean("onboarding_completed", true)
+            .apply()
     }
 
     private fun handleGoogleSignIn() {

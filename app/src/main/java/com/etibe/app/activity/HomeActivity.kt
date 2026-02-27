@@ -1,6 +1,7 @@
 package com.etibe.app.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -21,14 +22,11 @@ class HomeActivity : AppCompatActivity() {
         // Link bottom navigation with navigation graph
         bottomNavigationView.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-   /*         when (destination.id) {
-                R.id.checkoutFragment,
-                R.id.fragment_paystack_webview,
-                R.id.fragment_gift_form,
-                R.id.fragment_order_note,
-                R.id.editAddress,
-                R.id.editProfile,
-                R.id.wallet,
+            when (destination.id) {
+                R.id.fragment_create_etibe,
+                R.id.joinEtibe,
+                R.id.groupDetailsFragment,
+
                     -> {
                     bottomNavigationView.visibility = View.GONE
                 }
@@ -36,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
                 else -> {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
-            }*/
+            }
         }
     }
 }

@@ -3,7 +3,9 @@ package com.etibe.app.utils
 data class ActivateCircleResponse(
     val success: Boolean,
     val data: ActivateData?,
-    val meta: Meta?
+    val meta: Meta?,
+    val error: ApiError?
+
 )
 
 data class ActivateData(

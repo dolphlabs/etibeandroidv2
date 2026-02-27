@@ -23,6 +23,8 @@ import com.etibe.app.ui.SelectTokenBottomSheet
 import com.etibe.app.utils.CircleCreateRequest
 import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -38,16 +40,17 @@ class fragment_create_etibe : Fragment() {
     private var createdCircleId: String? = null  // ← store ID after creation
 
     // Image picker
-    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            result.data?.data?.let { uri ->
-                selectedImageUri = uri
-                binding.imageUploaded.setImageURI(uri)
-                binding.imageUploaded.visibility = View.VISIBLE
-                binding.btnUpload.visibility = View.GONE
+    private val pickImageLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.data?.let { uri ->
+                    selectedImageUri = uri
+                    binding.imageUploaded.setImageURI(uri)
+                    binding.imageUploaded.visibility = View.VISIBLE
+                    binding.btnUpload.visibility = View.GONE
+                }
             }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,12 +69,14 @@ class fragment_create_etibe : Fragment() {
 
     private fun setupViews() {
         val frequencies = arrayOf("WEEKLY", "BI_WEEKLY", "MONTHLY")
-        val freqAdapter = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, frequencies)
+        val freqAdapter =
+            ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, frequencies)
         binding.etFrequency.setAdapter(freqAdapter)
         binding.etFrequency.setText("BI_WEEKLY", false)
 
         val orders = arrayOf("Names numbered by entry order", "Random", "Custom")
-        val orderAdapter = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, orders)
+        val orderAdapter =
+            ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, orders)
         binding.etPaymentOrder.setAdapter(orderAdapter)
         binding.etPaymentOrder.setText("Names numbered by entry order", false)
     }
@@ -170,7 +175,7 @@ class fragment_create_etibe : Fragment() {
         binding.btnCreate.text = "Creating..."
 
         try {
-            // Step 1: Create circle
+            // STEP 1 → CREATE
             val request = CircleCreateRequest(
                 name = binding.etGroupName.text.toString().trim(),
                 description = "",
@@ -187,50 +192,67 @@ class fragment_create_etibe : Fragment() {
                 isPrivate = binding.switchPrivate.isChecked
             )
 
-            val createResponse = RetrofitClient.instance(requireContext()).createCircle(request)
+            val createResponse =
+                RetrofitClient.instance(requireContext()).createCircle(request)
 
-            if (createResponse.isSuccessful && createResponse.body()?.success == true) {
-                val createdData = createResponse.body()?.data?.data
-                createdCircleId = createdData?.id
-
-                if (createdCircleId.isNullOrBlank()) {
-                    showError("Circle created but no ID received")
-                    return@launch
-                }
-
-                Toast.makeText(context, "Etibé created! Activating...", Toast.LENGTH_SHORT).show()
-
-                // Step 2: Activate circle
-                binding.btnCreate.text = "Activating..."
-                val activateResponse = RetrofitClient.instance(requireContext()).activateCircle(createdCircleId!!)
-
-                if (activateResponse.isSuccessful && activateResponse.body()?.success == true) {
-                    val message = activateResponse.body()?.data?.message
-                        ?: "Etibé activated successfully!"
-
-                    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-
-                    // Navigate back or to group details
-                    findNavController().popBackStack()
-                    // Optional: go to details
-                    // val bundle = Bundle().apply { putString("circleId", createdCircleId) }
-                    // findNavController().navigate(R.id.action_createEtibe_to_groupDetails, bundle)
-                } else {
-                    val errorMsg = activateResponse.errorBody()?.string() ?: "Failed to activate circle"
-                    showError("Activation failed: $errorMsg")
-                }
-            } else {
-                val errorMsg = createResponse.errorBody()?.string() ?: "Failed to create Etibé"
-                showError(errorMsg)
+            if (!createResponse.isSuccessful || createResponse.body()?.success != true) {
+                showError(createResponse.errorBody()?.string() ?: "Failed to create Etibé")
+                return@launch
             }
+
+            val circleData = createResponse.body()?.data?.data
+            val circleId = circleData?.id ?: run {
+                showError("Circle created but ID missing")
+                return@launch
+            }
+
+            val circleName = circleData.name ?: "Etibé"
+
+            Toast.makeText(context, "Etibé created! Activating...", Toast.LENGTH_SHORT).show()
+
+            // STEP 2 → ACTIVATE
+            // STEP 2 → ACTIVATE
+            binding.btnCreate.text = "Activating..."
+
+            val activateResponse =
+                RetrofitClient.instance(requireContext()).activateCircle(circleId, emptyMap())
+
+            if (!activateResponse.isSuccessful || activateResponse.body()?.success != true) {
+                // Try to parse backend error message
+                val errorMessage = activateResponse.errorBody()?.let { parseErrorMessage(it) }
+                    ?: "Activation failed"
+                showError(errorMessage)
+                return@launch
+            }
+
+            val activatedCircle = activateResponse.body()?.data?.data
+            val inviteCode = activatedCircle?.inviteCode ?: circleId.takeLast(6)
+            val inviteLink = activatedCircle?.inviteLink ?: "https://etibe.app/join/$inviteCode"
+
+            Toast.makeText(
+                context,
+                "Etibé activated! Invite members now 🎉",
+                Toast.LENGTH_LONG
+            ).show()
+
+            // STEP 3 → NAVIGATE TO GROUP DETAILS
+            val bundle = Bundle().apply {
+                putString("circleId", circleId)
+                putString("circleName", circleName)
+            }
+
+            findNavController().popBackStack()
+
+
         } catch (e: Exception) {
-            showError("Network error: ${e.message ?: "Unknown error"}")
+            showError("Network error: ${e.message}")
         } finally {
             showLoading(false)
             binding.btnCreate.isEnabled = true
             binding.btnCreate.text = "Create Etibé"
         }
     }
+
 
     private fun showLoading(show: Boolean) {
         binding.loadingOverlay?.visibility = if (show) View.VISIBLE else View.GONE
@@ -239,6 +261,16 @@ class fragment_create_etibe : Fragment() {
                 ContextCompat.getColor(requireContext(), com.etibe.app.R.color.primary_green),
                 PorterDuff.Mode.SRC_IN
             )
+        }
+    }
+
+    private fun parseErrorMessage(responseBody: ResponseBody?): String {
+        return try {
+            val json = responseBody?.string()
+            val obj = JSONObject(json ?: "{}")
+            obj.optJSONObject("error")?.optString("message") ?: "Unknown error"
+        } catch (e: Exception) {
+            "Unknown error"
         }
     }
 

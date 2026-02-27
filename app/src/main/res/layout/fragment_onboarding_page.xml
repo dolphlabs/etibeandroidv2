@@ -63,7 +63,7 @@
         android:layout_marginBottom="80dp"
         android:text="@string/next"
         android:drawableEnd="@drawable/arrowright"
-        android:paddingEnd="132dp"
+        android:paddingEnd="102dp"
         android:paddingStart="102dp"
         android:fontFamily="@font/sf_pro_display_bold"
         android:textAllCaps="false"

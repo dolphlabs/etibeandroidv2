@@ -93,7 +93,7 @@ class GroupDetailsFragment : Fragment() {
                 details.circle?.nextPayoutDate?.substringBefore("T") ?: "N/A"
 
             // You Received (placeholder - add real logic later)
-            binding.tvYouReceivedAmount.text = "$0"
+            binding.tvYouReceivedAmount.text = ""
             binding.tvYouReceivedCycle.text = "This Cycle"
 
             // Your Turn (placeholder - calculate from payoutOrder)
@@ -114,8 +114,8 @@ class GroupDetailsFragment : Fragment() {
             binding.tvContributionsProgress.text = "$progress/10"
 
             // Contribution Status
-            binding.tvTotalContributions.text = "8" // placeholder - calculate from real data
-            binding.tvNextDueDate.text = "Dec 13, 2025" // placeholder
+            binding.tvTotalContributions.text = details.circle?.memberCount.toString()
+        //    binding.tvNextDueDate.text = details.circle?.nextPayoutDate.toString()
 
             // Show success state
             binding.layoutStatusMessage.isVisible = true

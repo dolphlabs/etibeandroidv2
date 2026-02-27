@@ -29,6 +29,11 @@ class JoinEtibe : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentJoinEtibeBinding.inflate(inflater, container, false)
+
+        binding.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         return binding.root
     }
 
@@ -40,15 +45,12 @@ class JoinEtibe : Fragment() {
 
     private fun setupClickListeners() {
         binding.apply {
-            ivBack.setOnClickListener {
-                findNavController().popBackStack()
-            }
+
 
             btnJoin.setOnClickListener {
                 joinCircle()
             }
 
-            // Optional: info icon click (show tooltip or dialog)
             tilInviteCode.setEndIconOnClickListener {
                 Snackbar.make(root, "Enter the invite code shared with you", Snackbar.LENGTH_LONG).show()
             }
@@ -77,17 +79,13 @@ class JoinEtibe : Fragment() {
             if (response.isSuccessful && response.body()?.success == true) {
                 Snackbar.make(binding.root, "Successfully joined the Etibé!", Snackbar.LENGTH_LONG).show()
 
-                // Optional: navigate to group details or home
-              //  findNavController().navigate(R.id.action_joinEtibe_to_groupDetails)
-                // or popBackStack() if you want to return
+
             } else {
                 val errorBody = response.errorBody()?.string()
                 val errorMsg = parseError(errorBody) ?: "Failed to join circle"
 
                 if (response.code() == 401) {
-                    // Token expired → redirect to login
                     RetrofitClient.clearTokens(requireContext())
-                  //  findNavController().navigate(R.id.action_joinEtibe_to_login)
                 } else {
                     binding.tvError.text = errorMsg
                     binding.tvError.isVisible = true

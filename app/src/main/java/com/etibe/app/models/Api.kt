@@ -5,6 +5,8 @@ import com.etibe.app.utils.CircleCreateRequest
 import com.etibe.app.utils.CircleCreateResponse
 import com.etibe.app.utils.CircleDashboardResponse
 import com.etibe.app.utils.DiscoverCirclesResponse
+import com.etibe.app.utils.GenericResponse
+import com.etibe.app.utils.InviteRequest
 import com.etibe.app.utils.JoinCircleRequest
 import com.etibe.app.utils.JoinCircleResponse
 import com.etibe.app.utils.LoginRequest
@@ -59,12 +61,11 @@ interface Api {
     @GET("/api/v1/circles/{id}/dashboard")
     suspend fun getCircleDashboard(@Path("id") id: String): Response<CircleDashboardResponse>
 
-    @POST("api/v1/circles/{id}/activate")
+    @POST("/api/v1/circles/{circleId}/activate")
     suspend fun activateCircle(
-        @Path("id") id: String,
+        @Path("circleId") circleId: String,
         @Body body: Map<String, String> = emptyMap()
     ): Response<ActivateCircleResponse>
-
 
     @GET("api/v1/circles/discover")
     suspend fun discoverCircles(
@@ -79,5 +80,11 @@ interface Api {
 
     @POST("api/v1/wallet/withdraw")
     suspend fun withdraw(@Body request: WithdrawRequest): Response<WithdrawResponse>
+
+    @POST("api/v1/circles/{circleId}/invite")
+    suspend fun inviteMember(
+        @Path("circleId") circleId: String,
+        @Body request: InviteRequest
+    ): Response<GenericResponse>
 
 }

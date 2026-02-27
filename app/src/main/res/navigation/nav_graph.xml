@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashScren_to_onboarding"
             app:destination="@id/onboarding" />
+        <action
+            android:id="@+id/action_splashScren_to_login"
+            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/onboarding"

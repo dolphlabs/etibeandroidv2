@@ -25,6 +25,10 @@ class fragment_signup : Fragment() {
 
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
+    private val MIN_PASSWORD_LENGTH = 8
+
+    private val PASSWORD_PATTERN =
+        Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&#^()_+=\\-]).{$MIN_PASSWORD_LENGTH,}$")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,13 +46,32 @@ class fragment_signup : Fragment() {
     }
 
     private fun setupInputValidation() {
-        listOf(
-            binding.etDisplayName to binding.tilDisplayName,
-            binding.etEmail to binding.tilEmail,
-            binding.etPassword to binding.tilPassword,
-            binding.etConfirmPassword to binding.tilConfirmPassword
-        ).forEach { (et, til) ->
-            et.doAfterTextChanged { til.error = null }
+
+        binding.etDisplayName.doAfterTextChanged {
+            if (binding.tilDisplayName.error != null) {
+                validateDisplayName(it.toString().trim())
+            }
+        }
+
+        binding.etEmail.doAfterTextChanged {
+            if (binding.tilEmail.error != null) {
+                validateEmail(it.toString().trim())
+            }
+        }
+
+        binding.etPassword.doAfterTextChanged {
+            if (binding.tilPassword.error != null) {
+                validatePassword(it.toString())
+            }
+        }
+
+        binding.etConfirmPassword.doAfterTextChanged {
+            if (binding.tilConfirmPassword.error != null) {
+                validateConfirmPassword(
+                    binding.etPassword.text.toString(),
+                    it.toString()
+                )
+            }
         }
     }
 
@@ -66,46 +89,78 @@ class fragment_signup : Fragment() {
             findNavController().navigate(R.id.action_fragment_signup_to_login)
         }
     }
+    private fun validateDisplayName(name: String): Boolean {
+        return when {
+            name.isEmpty() -> {
+                binding.tilDisplayName.error = "Display name is required"
+                false
+            }
+            name.length < 3 -> {
+                binding.tilDisplayName.error = "Display name must be at least 3 characters"
+                false
+            }
+            else -> true
+        }
+    }
+    private fun validateEmail(email: String): Boolean {
+        return when {
+            email.isEmpty() -> {
+                binding.tilEmail.error = "Email is required"
+                false
+            }
+            !Patterns.EMAIL_ADDRESS.matcher(email).matches() -> {
+                binding.tilEmail.error = "Please enter a valid email"
+                false
+            }
+            else -> true
+        }
+    }
+    private fun validatePassword(password: String): Boolean {
+        return when {
+            password.isEmpty() -> {
+                binding.tilPassword.error = "Password is required"
+                false
+            }
+            !PASSWORD_PATTERN.matches(password) -> {
+                binding.tilPassword.error =
+                    "Min 12 chars, include uppercase, lowercase, number & special character"
+                false
+            }
+            else -> true
+        }
+    }
+    private fun validateConfirmPassword(password: String, confirmPassword: String): Boolean {
+        return when {
+            confirmPassword.isEmpty() -> {
+                binding.tilConfirmPassword.error = "Please confirm your password"
+                false
+            }
+            confirmPassword != password -> {
+                binding.tilConfirmPassword.error = "Passwords do not match"
+                false
+            }
+            else -> true
+        }
+    }
 
     private fun validateInputs(): Boolean {
-        var isValid = true
+        clearAllFieldErrors()
 
         val displayName = binding.etDisplayName.text.toString().trim()
         val email = binding.etEmail.text.toString().trim()
         val password = binding.etPassword.text.toString()
         val confirmPassword = binding.etConfirmPassword.text.toString()
 
-        if (displayName.isEmpty()) {
-            binding.tilDisplayName.error = "Display name is required"
-            isValid = false
-        }
+        var isValid = true
 
-        if (email.isEmpty()) {
-            binding.tilEmail.error = "Email is required"
-            isValid = false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.tilEmail.error = "Please enter a valid email"
-            isValid = false
-        }
-
-        if (password.isEmpty()) {
-            binding.tilPassword.error = "Password is required"
-            isValid = false
-        } else if (password.length < 8) {
-            binding.tilPassword.error = "Password must be at least 8 characters"
-            isValid = false
-        }
-
-        if (confirmPassword.isEmpty()) {
-            binding.tilConfirmPassword.error = "Please confirm your password"
-            isValid = false
-        } else if (confirmPassword != password) {
-            binding.tilConfirmPassword.error = "Passwords do not match"
-            isValid = false
-        }
+        if (!validateDisplayName(displayName)) isValid = false
+        if (!validateEmail(email)) isValid = false
+        if (!validatePassword(password)) isValid = false
+        if (!validateConfirmPassword(password, confirmPassword)) isValid = false
 
         return isValid
     }
+
 
     private fun registerUser() = lifecycleScope.launch {
         // Show loading

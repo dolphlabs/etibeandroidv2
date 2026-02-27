@@ -45,8 +45,9 @@ class ExploreEtibeFragment : Fragment() {
         setupSwipeRefresh()
         setupClickListeners()
         observeViewModel()
-    }
 
+        viewModel.loadCircles(forceRefresh = false)
+    }
 
 
     private fun setupRecyclerView() {

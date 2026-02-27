@@ -31,7 +31,11 @@
         android:id="@+id/fragment_create_etibe"
         android:name="com.etibe.app.etibe.fragment_create_etibe"
         android:label="fragment_create_etibe"
-        tools:layout="@layout/fragment_create_etibe" />
+        tools:layout="@layout/fragment_create_etibe" >
+        <action
+            android:id="@+id/action_fragment_create_etibe_to_groupDetailsFragment"
+            app:destination="@id/groupDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/joinEtibe"
         android:name="com.etibe.app.etibe.JoinEtibe"

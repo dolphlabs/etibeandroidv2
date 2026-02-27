@@ -121,7 +121,6 @@
                     android:background="@drawable/text_input_bg"
                     android:fontFamily="@font/sf_pro_text_regular"
                     android:hint="Password"
-                    android:inputType="textPassword"
                     android:textColor="@color/black"
                     android:textColorHint="@color/hint_color"
                     android:textSize="13sp" />
@@ -144,7 +143,6 @@
                     android:background="@drawable/text_input_bg"
                     android:fontFamily="@font/sf_pro_text_regular"
                     android:hint="Confirm Password"
-                    android:inputType="textPassword"
                     android:textColor="@color/black"
                     android:textColorHint="@color/hint_color"
                     android:textSize="13sp" />
