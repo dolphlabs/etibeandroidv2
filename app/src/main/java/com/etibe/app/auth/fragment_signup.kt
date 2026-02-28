@@ -123,7 +123,7 @@ class fragment_signup : Fragment() {
             }
             !PASSWORD_PATTERN.matches(password) -> {
                 binding.tilPassword.error =
-                    "Min 12 chars, include uppercase, lowercase, number & special character"
+                    "Min 8 chars, include uppercase, lowercase, number & special character"
                 false
             }
             else -> true
